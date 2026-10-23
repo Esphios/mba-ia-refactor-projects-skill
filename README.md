@@ -563,6 +563,12 @@ protegidos. O login adicional do LMS é validado separadamente. Logs de falhas d
 baseline e testes RED permanecem como evidência histórica, identificados pelo
 nome; não representam falha do estado final.
 
+Reprodução em checkout limpo concluída: **43 testes no projeto1, 13 no projeto2,
+69 no projeto3**, além de 17 testes do validador. Os três boots e todos os 44
+contratos originais passaram, com o login adicional do LMS e casos negativos.
+[Log completo](reports/evidence/clean-checkout-reproduction.log) e
+[revisão/resultado](reports/evidence/clean-checkout.json).
+
 Checklist individual da solução (o checklist anterior é o modelo do enunciado):
 
 | Critério | Projeto 1 | Projeto 2 | Projeto 3 |

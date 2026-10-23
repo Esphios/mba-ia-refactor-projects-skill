@@ -106,3 +106,7 @@ Os testes comprovam os contratos e achados documentados; não constituem certifi
 - [x] Reauditoria e evidências diretas de execução disponíveis; nenhuma alteração genérica de skill necessária nesta implementação.
 
 Commit das fontes refatoradas: `7366216` (conteúdo funcional validado; logs de integração posteriores identificam a revisão completa).
+
+## Clean checkout reproduction
+
+Revision `7100f0224a5442167cb50c2816ff5682054d0016` was cloned without existing environments; fresh pip/npm installs, all three suites and all real HTTP matrices passed. Project2 suite: 13 tests passed. [Complete reproduction log](evidence/clean-checkout-reproduction.log), [checkout/result record](evidence/clean-checkout.json), [17 validator tests](evidence/clean-validator-tests.log). The checkout remained Git-clean after execution.

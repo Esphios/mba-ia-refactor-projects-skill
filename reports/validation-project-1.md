@@ -131,3 +131,7 @@ command; its integration log is recorded in the delivery evidence. These fixes
 preserve the approved contracts and make the original validation stronger.
 
 Final source commit: `7708f87b90b516a7203c3acaa26a8941b9e24740`. EOF-only cleanup after the source manifest in the re-audit did not alter behavior; this refreshed manifest identifies exact local bytes.
+
+## Clean checkout reproduction
+
+Revision `7100f0224a5442167cb50c2816ff5682054d0016` was cloned without existing environments; fresh pip/npm installs, all three suites and all real HTTP matrices passed. Project1 suite: 43 tests passed. [Complete reproduction log](evidence/clean-checkout-reproduction.log), [checkout/result record](evidence/clean-checkout.json), [17 validator tests](evidence/clean-validator-tests.log). The checkout remained Git-clean after execution.

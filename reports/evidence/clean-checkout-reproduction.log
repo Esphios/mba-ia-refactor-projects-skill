@@ -1,0 +1,386 @@
+
+$ C:\Users\eduar\AppData\Local\Programs\Python\Python312\python.exe -m venv C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe -m pip install -r requirements-dev.txt
+Collecting flask==3.1.1 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached flask-3.1.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting flask-cors==5.0.1 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 2))
+  Using cached flask_cors-5.0.1-py3-none-any.whl.metadata (961 bytes)
+Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 2))
+  Using cached pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+Collecting blinker>=1.9.0 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting jinja2>=3.1.2 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting markupsafe>=2.1.1 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached markupsafe-3.0.4-cp312-cp312-win_amd64.whl.metadata (2.8 kB)
+Collecting werkzeug>=3.1.0 (from flask==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\requirements.txt (line 1))
+  Using cached werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Collecting colorama>=0.4 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+  Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting packaging>=20 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+  Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+  Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+  Using cached pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Using cached flask-3.1.1-py3-none-any.whl (103 kB)
+Using cached flask_cors-5.0.1-py3-none-any.whl (11 kB)
+Using cached pytest-8.4.2-py3-none-any.whl (365 kB)
+Using cached blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Using cached click-8.5.0-py3-none-any.whl (125 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Using cached itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.4-cp312-cp312-win_amd64.whl (14 kB)
+Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Using cached pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Using cached werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Installing collected packages: pygments, pluggy, packaging, markupsafe, itsdangerous, iniconfig, colorama, click, blinker, werkzeug, pytest, jinja2, flask, flask-cors
+Successfully installed blinker-1.9.0 click-8.5.0 colorama-0.4.6 flask-3.1.1 flask-cors-5.0.1 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 werkzeug-3.1.9
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.2
+[notice] To update, run: C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe -m pip install --upgrade pip
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe --version
+Python 3.12.10
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe -m pytest -q
+...........................................                              [100%]
+43 passed in 12.86s
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe -m flask --app app init-db
+Database schema initialized.
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe -m flask --app app seed-demo
+Demo data seeded.
+exit=0
+
+$ python app.py (disposable database, loopback, debug disabled)
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:55117
+Press CTRL+C to quit
+127.0.0.1 - - [22/Oct/2026 21:47:05] "GET /health HTTP/1.1" 200 -
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\code-smells-project\.venv-reproduce\Scripts\python.exe tests/run_http_matrix.py
+127.0.0.1 - - [22/Oct/2026 21:47:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "GET /produtos HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "GET /produtos/busca?q=Mouse&preco_min=80&preco_max=100 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "GET /produtos/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "POST /admin/query HTTP/1.1" 403 -
+127.0.0.1 - - [22/Oct/2026 21:47:06] "POST /usuarios HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "POST /produtos HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "PUT /produtos/11 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "DELETE /produtos/11 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /usuarios HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /usuarios/4 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "POST /pedidos HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /pedidos HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /pedidos/usuario/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "PUT /pedidos/1/status HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /relatorios/vendas HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "POST /admin/query HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:47:07] "POST /admin/reset-db HTTP/1.1" 200 -
+{"method": "GET", "path": "/", "status": 200}
+{"method": "GET", "path": "/produtos", "status": 200}
+{"method": "GET", "path": "/produtos/busca?q=Mouse&preco_min=80&preco_max=100", "status": 200}
+{"method": "GET", "path": "/produtos/1", "status": 200}
+{"method": "POST", "path": "/login", "status": 200}
+{"method": "POST", "path": "/login", "status": 200}
+{"method": "POST", "path": "/admin/query", "status": 403}
+{"method": "POST", "path": "/usuarios", "status": 201}
+{"method": "POST", "path": "/login", "status": 200}
+{"method": "POST", "path": "/produtos", "status": 201}
+{"method": "PUT", "path": "/produtos/11", "status": 200}
+{"method": "DELETE", "path": "/produtos/11", "status": 200}
+{"method": "GET", "path": "/usuarios", "status": 200}
+{"method": "GET", "path": "/usuarios/4", "status": 200}
+{"method": "POST", "path": "/pedidos", "status": 201}
+{"method": "GET", "path": "/pedidos", "status": 200}
+{"method": "GET", "path": "/pedidos/usuario/2", "status": 200}
+{"method": "PUT", "path": "/pedidos/1/status", "status": 200}
+{"method": "GET", "path": "/relatorios/vendas", "status": 200}
+{"method": "GET", "path": "/health", "status": 200}
+{"method": "POST", "path": "/admin/query", "status": 200}
+{"method": "POST", "path": "/admin/reset-db", "status": 200}
+{"result": "PASS", "contracts": 19}
+exit=0
+
+$ D:\nvm4w\nodejs\node.EXE --version
+v24.12.0
+exit=0
+
+$ D:\nvm4w\nodejs\node.EXE D:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js ci
+npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+
+added 124 packages, and audited 125 packages in 6s
+
+26 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   sqlite3@6.0.1 (install: prebuild-install -r napi || node-gyp rebuild)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+exit=0
+
+$ D:\nvm4w\nodejs\node.EXE D:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js test
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test test/*.test.js
+
+✔ external configuration validates required signing secret, seed credentials, TTL and port (2.6482ms)
+✔ salted password storage rejects incorrect password and malformed legacy values (217.7621ms)
+✔ all checkout boundaries, success shapes, identity proof, refusal and safe logs (524.2554ms)
+✔ login, authorization, forged/expired tokens and current role and active state (352.9678ms)
+✔ self/admin lifecycle deletes unreferenced users and deactivates referenced users preserving financial history (487.3464ms)
+✔ each write failure rolls back the entire checkout, and concurrent operations stay isolated (1200.6042ms)
+✔ database failures in lookup/report/delete return 500 without leaking SQL or claiming success (166.9337ms)
+QUERY_COUNT: 1 enrollment=2; 20 enrollments=2; includes current-user authentication
+✔ report constant query count, exact response shape, empty courses and paid/denied aggregation (1238.8675ms)
+✔ readiness fails cleanly for an existing legacy schema rather than reseeding or dropping data (20.7371ms)
+✔ controlled legacy migration preserves records and finances, disables ambiguous credentials, and explicit reset enables login (188.9964ms)
+✔ startup against an existing current database never reseeds or overwrites rows (168.1357ms)
+✔ concurrent failing and successful transactions do not share rollback state (219.0772ms)
+BASELINE: all 3 original method/path pairs; paid/denied/missing/course absent/report/delete; unsafe side effects characterized; no external charges
+✔ original three HTTP contracts on a disposable in-memory database (263.9536ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5529.1115
+exit=0
+
+$ D:\nvm4w\nodejs\node.EXE D:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js run test:http
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test:http
+> node test/run-http-matrix.js
+
+{"event":"ready","port":51425,"database":"file"}
+{"node":"v24.12.0","express":"4.22.3","sqlite3":"6.0.1","sqlite":"3.52.0","database":"disposable temporary file","listening_after_schema":true}
+{"case":"anonymous report","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"anonymous deletion","method":"DELETE","path":"/api/users/1","expected":401,"observed":401,"passed":true}
+{"case":"login bad input","method":"POST","path":"/api/auth/login","expected":400,"observed":400,"passed":true}
+{"case":"login invalid credentials","method":"POST","path":"/api/auth/login","expected":401,"observed":401,"passed":true}
+{"case":"administrator login","method":"POST","path":"/api/auth/login","expected":200,"observed":200,"passed":true}
+{"case":"checkout missing input","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout invalid card type","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout missing new-account password","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout absent course","method":"POST","path":"/api/checkout","expected":404,"observed":404,"passed":true}
+{"case":"checkout denied","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":1}
+{"case":"checkout approved shape","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"student login","method":"POST","path":"/api/auth/login","expected":200,"observed":200,"passed":true}
+{"case":"student report denied","method":"GET","path":"/api/admin/financial-report","expected":403,"observed":403,"passed":true}
+{"case":"student cannot delete administrator","method":"DELETE","path":"/api/users/1","expected":403,"observed":403,"passed":true}
+{"case":"checkout existing identity missing","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"checkout existing wrong password","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":2}
+{"case":"checkout existing bearer identity","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"tampered credential","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"expired credential","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"administrator report authorized","method":"GET","path":"/api/admin/financial-report","expected":200,"observed":200,"passed":true}
+{"case":"delete invalid ID","method":"DELETE","path":"/api/users/bad","expected":400,"observed":400,"passed":true}
+{"case":"delete absent user","method":"DELETE","path":"/api/users/9999","expected":404,"observed":404,"passed":true}
+{"case":"induced payment failure rollback","method":"POST","path":"/api/checkout","expected":500,"observed":500,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":3}
+{"case":"concurrent 0","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":4}
+{"case":"concurrent 1","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":5}
+{"case":"concurrent 2","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":6}
+{"case":"concurrent 3","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":7}
+{"case":"concurrent 4","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"self deactivation preserves financial history","method":"DELETE","path":"/api/users/2","expected":200,"observed":200,"passed":true}
+{"case":"deactivated identity denied","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"administrator physical deletion without relationships","method":"DELETE","path":"/api/users/8","expected":200,"observed":200,"passed":true}
+{"case":"delete database failure","method":"DELETE","path":"/api/users/1","expected":500,"observed":500,"passed":true}
+{"case":"report database failure","method":"GET","path":"/api/admin/financial-report","expected":500,"observed":500,"passed":true}
+{"case":"checkout database failure","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"checkout database lookup failure","method":"POST","path":"/api/checkout","expected":500,"observed":500,"passed":true}
+HTTP_MATRIX_PASS: all 3 original endpoints and new login; success/denial/errors/rollback/concurrency verified against a real child process
+{"event":"stopped"}
+STARTUP_FAILURE_PASS: missing required signing secret exits 1 without listening
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Programs\Python\Python312\python.exe -m venv C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce\Scripts\python.exe -m pip install -r requirements-dev.txt
+Collecting flask==3.0.0 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached flask-3.0.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting flask-sqlalchemy==3.1.1 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 2))
+  Using cached flask_sqlalchemy-3.1.1-py3-none-any.whl.metadata (3.4 kB)
+Collecting flask-cors==4.0.0 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 3))
+  Using cached Flask_Cors-4.0.0-py2.py3-none-any.whl.metadata (5.4 kB)
+Collecting marshmallow==3.20.1 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 4))
+  Using cached marshmallow-3.20.1-py3-none-any.whl.metadata (7.8 kB)
+Collecting requests==2.31.0 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 5))
+  Using cached requests-2.31.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting python-dotenv==1.0.0 (from -r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 6))
+  Using cached python_dotenv-1.0.0-py3-none-any.whl.metadata (21 kB)
+Collecting pytest==8.3.5 (from -r requirements-dev.txt (line 2))
+  Using cached pytest-8.3.5-py3-none-any.whl.metadata (7.6 kB)
+Collecting Werkzeug>=3.0.0 (from flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Collecting Jinja2>=3.1.2 (from flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting itsdangerous>=2.1.2 (from flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting click>=8.1.3 (from flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting blinker>=1.6.2 (from flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting sqlalchemy>=2.0.16 (from flask-sqlalchemy==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 2))
+  Using cached sqlalchemy-2.1.6-cp312-cp312-win_amd64.whl.metadata (9.9 kB)
+Collecting packaging>=17.0 (from marshmallow==3.20.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 4))
+  Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting charset-normalizer<4,>=2 (from requests==2.31.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 5))
+  Using cached charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl.metadata (47 kB)
+Collecting idna<4,>=2.5 (from requests==2.31.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 5))
+  Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.21.1 (from requests==2.31.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 5))
+  Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2017.4.17 (from requests==2.31.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 5))
+  Using cached certifi-2026.10.19-py3-none-any.whl.metadata (2.5 kB)
+Collecting colorama (from pytest==8.3.5->-r requirements-dev.txt (line 2))
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting iniconfig (from pytest==8.3.5->-r requirements-dev.txt (line 2))
+  Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting pluggy<2,>=1.5 (from pytest==8.3.5->-r requirements-dev.txt (line 2))
+  Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting MarkupSafe>=2.0 (from Jinja2>=3.1.2->flask==3.0.0->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 1))
+  Using cached markupsafe-3.0.4-cp312-cp312-win_amd64.whl.metadata (2.8 kB)
+Collecting typing-extensions>=4.6.0 (from sqlalchemy>=2.0.16->flask-sqlalchemy==3.1.1->-r C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\requirements.txt (line 2))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Using cached flask-3.0.0-py3-none-any.whl (99 kB)
+Using cached flask_sqlalchemy-3.1.1-py3-none-any.whl (25 kB)
+Using cached Flask_Cors-4.0.0-py2.py3-none-any.whl (14 kB)
+Using cached marshmallow-3.20.1-py3-none-any.whl (49 kB)
+Using cached requests-2.31.0-py3-none-any.whl (62 kB)
+Using cached python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+Using cached pytest-8.3.5-py3-none-any.whl (343 kB)
+Using cached blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Using cached certifi-2026.10.19-py3-none-any.whl (136 kB)
+Using cached charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl (207 kB)
+Using cached click-8.5.0-py3-none-any.whl (125 kB)
+Using cached idna-3.20-py3-none-any.whl (69 kB)
+Using cached itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Using cached sqlalchemy-2.1.6-cp312-cp312-win_amd64.whl (2.4 MB)
+Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+Using cached werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Using cached markupsafe-3.0.4-cp312-cp312-win_amd64.whl (14 kB)
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: urllib3, typing-extensions, python-dotenv, pluggy, packaging, MarkupSafe, itsdangerous, iniconfig, idna, colorama, click, charset-normalizer, certifi, blinker, Werkzeug, sqlalchemy, requests, pytest, marshmallow, Jinja2, flask, flask-sqlalchemy, flask-cors
+Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 Werkzeug-3.1.9 blinker-1.9.0 certifi-2026.10.19 charset-normalizer-3.5.2 click-8.5.0 colorama-0.4.6 flask-3.0.0 flask-cors-4.0.0 flask-sqlalchemy-3.1.1 idna-3.20 iniconfig-2.3.1 itsdangerous-2.2.0 marshmallow-3.20.1 packaging-26.3 pluggy-1.7.0 pytest-8.3.5 python-dotenv-1.0.0 requests-2.31.0 sqlalchemy-2.1.6 typing-extensions-4.16.0 urllib3-2.8.0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.2
+[notice] To update, run: C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce\Scripts\python.exe -m pip install --upgrade pip
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce\Scripts\python.exe --version
+Python 3.12.10
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce\Scripts\python.exe -m pytest -q
+.....................................................................    [100%]
+69 passed in 63.29s (0:01:03)
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery\task-manager-api\.venv-reproduce\Scripts\python.exe tests/run_http_matrix.py
+GET /: expected=200 observed=200 PASS
+GET /health: expected=200 observed=200 PASS
+GET /tasks: expected=200 observed=200 PASS
+GET /tasks/1: expected=200 observed=200 PASS
+POST /tasks: expected=201 observed=201 PASS
+PUT /tasks/1: expected=200 observed=200 PASS
+GET /tasks/search?q=HTTP: expected=200 observed=200 PASS
+GET /tasks/stats: expected=200 observed=200 PASS
+GET /users: expected=200 observed=200 PASS
+GET /users/2: expected=200 observed=200 PASS
+POST /users: expected=201 observed=201 PASS
+PUT /users/2: expected=200 observed=200 PASS
+GET /users/2/tasks: expected=200 observed=200 PASS
+POST /login: expected=200 observed=200 PASS
+GET /reports/summary: expected=200 observed=200 PASS
+GET /reports/user/2: expected=200 observed=200 PASS
+GET /categories: expected=200 observed=200 PASS
+POST /categories: expected=201 observed=201 PASS
+PUT /categories/2: expected=200 observed=200 PASS
+DELETE /categories/2: expected=200 observed=200 PASS
+DELETE /tasks/1: expected=200 observed=200 PASS
+DELETE /users/3: expected=200 observed=200 PASS
+Negative real HTTP: anonymous 401 and ordinary-user admin denial 403 PASS
+HTTP_MATRIX 22/22 PASS
+REAL_PROCESS_BOOT_LOG
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:51765
+Press CTRL+C to quit
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /tasks HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "POST /tasks HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "PUT /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /tasks/search?q=HTTP HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /tasks/stats HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /users HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:04] "GET /users/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "POST /users HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "PUT /users/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /users/2/tasks HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /reports/summary HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /reports/user/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /categories HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "POST /categories HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "PUT /categories/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "DELETE /categories/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "DELETE /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "DELETE /users/3 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /tasks HTTP/1.1" 401 -
+127.0.0.1 - - [22/Oct/2026 21:49:05] "GET /users HTTP/1.1" 403 -
+
+exit=0
+
+$ C:\Users\eduar\AppData\Local\Programs\Python\Python312\python.exe scripts/validate-delivery.py --root C:\Users\eduar\AppData\Local\Temp\refactor-clean-checkout-t05pa9as\delivery
+Delivery structure PASS: packages, links, examples, MVC files and referenced logs exist.
+Review and real application tests remain required; file presence does not prove execution or quality.
+exit=0
+
+PASS: three suites, three real boots and complete HTTP matrices; delivery structure valid.

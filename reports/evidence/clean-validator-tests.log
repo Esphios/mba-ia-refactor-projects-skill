@@ -1,0 +1,22 @@
+test_absent_log (test_validate_delivery.DeliveryTests.test_absent_log) ... ok
+test_comments_only_are_not_examples (test_validate_delivery.DeliveryTests.test_comments_only_are_not_examples) ... ok
+test_complete_alternative_root_passes (test_validate_delivery.DeliveryTests.test_complete_alternative_root_passes) ... ok
+test_empty_logs_are_not_evidence (test_validate_delivery.DeliveryTests.test_empty_logs_are_not_evidence) ... ok
+test_example_links_do_not_require_fictional_files (test_validate_delivery.DeliveryTests.test_example_links_do_not_require_fictional_files) ... ok
+test_generated_markdown_is_excluded (test_validate_delivery.DeliveryTests.test_generated_markdown_is_excluded) ... ok
+test_generated_sources_do_not_satisfy_mvc (test_validate_delivery.DeliveryTests.test_generated_sources_do_not_satisfy_mvc) ... ok
+test_missing_audit (test_validate_delivery.DeliveryTests.test_missing_audit) ... ok
+test_missing_catalog_family (test_validate_delivery.DeliveryTests.test_missing_catalog_family) ... ok
+test_missing_entry (test_validate_delivery.DeliveryTests.test_missing_entry) ... ok
+test_missing_frontmatter_description (test_validate_delivery.DeliveryTests.test_missing_frontmatter_description) ... ok
+test_missing_reference (test_validate_delivery.DeliveryTests.test_missing_reference) ... ok
+test_missing_required_readme_section (test_validate_delivery.DeliveryTests.test_missing_required_readme_section) ... ok
+test_readme_links_are_checked (test_validate_delivery.DeliveryTests.test_readme_links_are_checked) ... ok
+test_reduced_playbook (test_validate_delivery.DeliveryTests.test_reduced_playbook) ... ok
+test_reference_style_links_are_checked (test_validate_delivery.DeliveryTests.test_reference_style_links_are_checked) ... ok
+test_unequal_packages (test_validate_delivery.DeliveryTests.test_unequal_packages) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 6.447s
+
+OK

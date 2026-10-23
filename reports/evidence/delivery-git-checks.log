@@ -1,0 +1,5 @@
+Tracked files: 207
+PASS tracked delivery excludes databases/env/dependencies/caches
+PASS all21 frozen skill files match final hashes in clean checkout
+PASS git diff --check original..HEAD
+PASS openspec validate deliver-refactor-arch-skill --strict
