@@ -1,4 +1,13 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://127.0.0.1:3000
+@adminEmail = {{$processEnv DEMO_ADMIN_EMAIL}}
+@adminPassword = {{$processEnv DEMO_ADMIN_PASSWORD}}
+
+### Login com administrador configurado externamente
+# @name adminLogin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"email":"{{adminEmail}}","password":"{{adminPassword}}"}
 
 ### Checkout - sucesso
 POST {{baseUrl}}/api/checkout
@@ -19,13 +28,15 @@ Content-Type: application/json
 {
   "usr": "João",
   "eml": "joao@teste.com",
-  "pwd": "123",
+  "pwd": "fixture-password-123",
   "c_id": 1,
   "card": "5111222233334444"
 }
 
 ### Relatório financeiro administrativo
 GET {{baseUrl}}/api/admin/financial-report
+Authorization: Bearer {{adminLogin.response.body.access_token}}
 
 ### Deletar usuário
-DELETE {{baseUrl}}/api/users/1
+DELETE {{baseUrl}}/api/users/2
+Authorization: Bearer {{adminLogin.response.body.access_token}}
