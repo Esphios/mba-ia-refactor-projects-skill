@@ -1,6 +1,6 @@
 from database import db
-from datetime import datetime
-import json
+from utils.dates import utc_naive, overdue
+from utils.constants import STATUSES, PRIORITIES, DEFAULT_PRIORITY
 
 class Task(db.Model):
     __tablename__ = 'tasks'
@@ -9,11 +9,11 @@ class Task(db.Model):
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
     status = db.Column(db.String(50), default='pending')
-    priority = db.Column(db.Integer, default=3)
+    priority = db.Column(db.Integer, default=DEFAULT_PRIORITY)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=utc_naive)
+    updated_at = db.Column(db.DateTime, default=utc_naive, onupdate=utc_naive)
     due_date = db.Column(db.DateTime, nullable=True)
     tags = db.Column(db.String(500), nullable=True)
 
@@ -36,25 +36,10 @@ class Task(db.Model):
         return data
 
     def validate_status(self, new_status):
-        valid = ['pending', 'in_progress', 'done', 'cancelled']
-        if new_status in valid:
-            return True
-        else:
-            return False
+        return new_status in STATUSES
 
-    def validate_priority(self, p):
-        if p >= 1 and p <= 5:
-            return True
-        return False
+    def validate_priority(self, priority):
+        return type(priority) is int and priority in PRIORITIES
 
     def is_overdue(self):
-        if self.due_date:
-            if self.due_date < datetime.utcnow():
-                if self.status != 'done' and self.status != 'cancelled':
-                    return True
-                else:
-                    return False
-            else:
-                return False
-        else:
-            return False
+        return overdue(self)
