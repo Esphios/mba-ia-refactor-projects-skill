@@ -14,4 +14,3 @@ ALL_BLUEPRINTS = (
     report_blueprint,
     admin_blueprint,
 )
-

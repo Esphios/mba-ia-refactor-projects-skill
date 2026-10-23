@@ -22,4 +22,3 @@ class AdminModel:
             return [dict(row) for row in cursor.fetchall()], False
         connection.commit()
         return None, True
-

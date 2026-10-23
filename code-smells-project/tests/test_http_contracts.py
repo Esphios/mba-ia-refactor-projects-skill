@@ -192,4 +192,3 @@ def auth_headers_for(client, email, password):
     assert response.status_code == 200
     token = response.get_json().get("token", "legacy-login-issued-no-token")
     return {"Authorization": f"Bearer {token}"}
-

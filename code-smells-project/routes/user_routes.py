@@ -12,4 +12,3 @@ blueprint.get("/usuarios/<int:user_id>")(
 )
 blueprint.post("/usuarios")(user_controller.create_user)
 blueprint.post("/login")(user_controller.login)
-

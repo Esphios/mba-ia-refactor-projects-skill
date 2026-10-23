@@ -70,4 +70,3 @@ class UserModel:
                 get_db().commit()
                 user["senha"] = new_hash
         return user if valid else None
-

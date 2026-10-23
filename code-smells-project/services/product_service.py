@@ -46,4 +46,3 @@ def validate_product(payload):
         "estoque": stock,
         "categoria": category,
     }
-

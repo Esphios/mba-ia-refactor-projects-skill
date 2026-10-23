@@ -12,4 +12,3 @@ class ReportModel:
             FROM pedidos
         """).fetchone()
         return dict(row)
-

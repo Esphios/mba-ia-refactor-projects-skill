@@ -77,4 +77,3 @@ class ProductModel:
     def delete(self, product_id):
         get_db().execute("DELETE FROM produtos WHERE id = ?", (product_id,))
         get_db().commit()
-

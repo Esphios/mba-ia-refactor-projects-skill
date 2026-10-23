@@ -53,4 +53,3 @@ def login():
         "token": issue_token(user),
         "expires_in": current_app.config.get("TOKEN_MAX_AGE", 3600),
     }), 200
-

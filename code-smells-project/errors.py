@@ -50,4 +50,3 @@ def register_error_handlers(app):
     def handle_unexpected_error(error):
         app.logger.exception("Unexpected application error", exc_info=error)
         return jsonify({"erro": "Erro interno"}), 500
-

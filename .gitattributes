@@ -1,4 +1,4 @@
 # Frozen skill/evaluation hashes identify exact bytes across platforms. Keep Git
 # autocrlf from changing these packages and raw execution evidence on checkout.
-**/.agents/skills/refactor-arch/** -text
-reports/evidence/** -text
+**/.agents/skills/refactor-arch/** -text whitespace=cr-at-eol
+reports/evidence/** -text whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab,cr-at-eol

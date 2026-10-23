@@ -21,4 +21,3 @@ def execute_query():
     if changed:
         return jsonify({"mensagem": "Query executada", "sucesso": True}), 200
     return jsonify({"dados": rows, "sucesso": True}), 200
-

@@ -83,4 +83,3 @@ def admin_headers(auth_headers):
 @pytest.fixture
 def customer_headers(auth_headers):
     return auth_headers("joao@email.com", "customer-test-password")
-

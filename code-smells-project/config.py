@@ -21,4 +21,3 @@ class Config:
         cutoff = datetime.fromisoformat(values['LEGACY_PASSWORD_CUTOFF'])
         if cutoff.tzinfo is None:
             raise RuntimeError('LEGACY_PASSWORD_CUTOFF requires a timezone')
-

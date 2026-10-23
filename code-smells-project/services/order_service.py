@@ -93,4 +93,3 @@ class OrderService:
                 raise APIError("Quantidade deve ser um inteiro positivo")
             aggregated[product_id] = aggregated.get(product_id, 0) + quantity
         return aggregated
-

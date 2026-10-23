@@ -53,4 +53,3 @@ def delete_product(product_id):
         raise ConflictError("Produto possui histórico de pedidos")
     products.delete(product_id)
     return jsonify({"sucesso": True, "mensagem": "Produto deletado"}), 200
-

@@ -10,4 +10,3 @@ class SystemModel:
               (SELECT COUNT(*) FROM pedidos) AS pedidos
         """).fetchone()
         return dict(row)
-

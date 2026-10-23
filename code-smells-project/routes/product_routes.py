@@ -16,4 +16,3 @@ blueprint.put("/produtos/<int:product_id>")(
 blueprint.delete("/produtos/<int:product_id>")(
     admin_required(product_controller.delete_product)
 )
-

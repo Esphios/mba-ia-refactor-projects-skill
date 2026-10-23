@@ -38,4 +38,3 @@ def update_order_status(pedido_id):
         raise APIError("Dados inválidos")
     order_service.update_status(pedido_id, payload.get("status", ""))
     return jsonify({"sucesso": True, "mensagem": "Status atualizado"}), 200
-

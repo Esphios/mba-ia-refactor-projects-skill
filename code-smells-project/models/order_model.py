@@ -92,4 +92,3 @@ class OrderModel:
                 "preco_unitario": item["preco_unitario"],
             })
         return orders
-

@@ -14,4 +14,3 @@ blueprint.get("/pedidos/usuario/<int:usuario_id>")(
 blueprint.put("/pedidos/<int:pedido_id>/status")(
     admin_required(order_controller.update_order_status)
 )
-
