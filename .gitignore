@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.example
 node_modules/
 
 # Python
@@ -9,4 +11,46 @@ venv/
 
 # SQLite
 *.db
+*.db-*
+*.sqlite
+*.sqlite3
 instance/
+
+# Local agent/editor state; keep .github and configuration examples visible.
+/.agents/
+.codex/
+.claude/
+.gemini/
+.vscode/
+.idea/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+.venv*/
+.worktrees/
+.agents/*
+.agents/skills/*
+
+# Preserve local instruction files while allowing CI delivery, even when a
+# machine-local exclude hides .github.
+!/.github/
+/.github/*
+!/.github/workflows/
+
+# Version only the deliverable skill packages inside each challenge project.
+!code-smells-project/.agents/
+!code-smells-project/.agents/skills/
+!code-smells-project/.agents/skills/refactor-arch/
+!code-smells-project/.agents/skills/refactor-arch/**
+!ecommerce-api-legacy/.agents/
+!ecommerce-api-legacy/.agents/skills/
+!ecommerce-api-legacy/.agents/skills/refactor-arch/
+!ecommerce-api-legacy/.agents/skills/refactor-arch/**
+!task-manager-api/.agents/
+!task-manager-api/.agents/skills/
+!task-manager-api/.agents/skills/refactor-arch/
+!task-manager-api/.agents/skills/refactor-arch/**
+
+docs/
+openspec/
