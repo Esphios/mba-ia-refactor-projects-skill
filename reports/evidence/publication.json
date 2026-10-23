@@ -1,0 +1,25 @@
+{
+  "verified_published_revision": "a540da8a5bb6548f6e5bed01fc3fcd27c38e2460",
+  "remote_tree_sha": "a540da8a5bb6548f6e5bed01fc3fcd27c38e2460",
+  "branch": "work/deliver-refactor-arch",
+  "url": "https://github.com/Esphios/mba-ia-refactor-projects-skill/tree/work/deliver-refactor-arch",
+  "visibility": "PUBLIC",
+  "fork_parent": "devfullcycle/mba-ia-refactor-projects-skill",
+  "remote_files": 212,
+  "required_files_verified": [
+    "README.md",
+    "scripts/validate-delivery.py",
+    "scripts/reproduce-delivery.py",
+    "code-smells-project/.agents/skills/refactor-arch/SKILL.md",
+    "reports/audit-project-1.md",
+    "reports/validation-project-1.md",
+    "ecommerce-api-legacy/.agents/skills/refactor-arch/SKILL.md",
+    "reports/audit-project-2.md",
+    "reports/validation-project-2.md",
+    "task-manager-api/.agents/skills/refactor-arch/SKILL.md",
+    "reports/audit-project-3.md",
+    "reports/validation-project-3.md"
+  ],
+  "status": "PASS",
+  "note": "This is the source/evidence revision verified before committing this publication receipt; later receipt-only commits do not change tested application or skill content."
+}
