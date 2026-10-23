@@ -1,0 +1,28 @@
+Project 1 real-process boot — 2026-10-22
+
+Environment:
+- Python 3.12.10 in code-smells-project/.venv-refactor
+- Flask 3.1.1
+- disposable SQLite database under reports/evidence (removed after validation)
+- SECRET_KEY and all three demo passwords supplied externally
+- HOST=127.0.0.1, PORT=5051, APP_ENV=validation
+
+Initialization commands:
+  python -m flask --app app init-db
+  Database schema initialized.
+  python -m flask --app app seed-demo
+  Demo data seeded.
+
+Boot command and observed startup:
+  python -u app.py
+   * Serving Flask app 'app'
+   * Debug mode: off
+   * Running on http://127.0.0.1:5051
+
+Readiness probe:
+  GET http://127.0.0.1:5051/health
+  HTTP 200
+  status=ok, database=connected
+
+The complete authorized HTTP run is recorded in project-1-http-matrix.jsonl.
+No secret values are present in either evidence file.

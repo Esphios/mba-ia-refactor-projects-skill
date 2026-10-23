@@ -1,0 +1,118 @@
+FFFF                                                                     [100%]
+================================== FAILURES ===================================
+_______________ test_nonfinite_product_prices_are_rejected[inf] _______________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoxfQ.atqrvQ.1CdvAS5HaD94kW8wQsUke4hxDBM'}
+price = inf
+
+    @pytest.mark.parametrize('price', [float('inf'), float('nan'), 10 ** 400])
+    def test_nonfinite_product_prices_are_rejected(client, admin_headers, price):
+        response = client.post('/produtos', headers=admin_headers,
+                               json={'nome': 'Pre�o inv�lido', 'preco': price, 'estoque': 3})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:71: AssertionError
+_______________ test_nonfinite_product_prices_are_rejected[nan] _______________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoxfQ.atqrvg.59aFB66epWIplN-etPJcM-GvCTg'}
+price = nan
+
+    @pytest.mark.parametrize('price', [float('inf'), float('nan'), 10 ** 400])
+    def test_nonfinite_product_prices_are_rejected(client, admin_headers, price):
+        response = client.post('/produtos', headers=admin_headers,
+                               json={'nome': 'Pre�o inv�lido', 'preco': price, 'estoque': 3})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:71: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    app:errors.py:39 Database operation failed
+Traceback (most recent call last):
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\auth.py", line 46, in wrapped
+    return view(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\auth.py", line 57, in wrapped
+    return view(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\controllers\product_controller.py", line 36, in create_product
+    product_id = products.create(values)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\models\product_model.py", line 45, in create
+    cursor = get_db().execute(
+             ^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: produtos.preco
+_ test_nonfinite_product_prices_are_rejected[10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000] _
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoxfQ.atqrvg.59aFB66epWIplN-etPJcM-GvCTg'}
+price = 100000000000000000...0000000000000000000
+
+    @pytest.mark.parametrize('price', [float('inf'), float('nan'), 10 ** 400])
+    def test_nonfinite_product_prices_are_rejected(client, admin_headers, price):
+        response = client.post('/produtos', headers=admin_headers,
+                               json={'nome': 'Pre�o inv�lido', 'preco': price, 'estoque': 3})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:71: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    app:errors.py:44 Unexpected application error
+Traceback (most recent call last):
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\auth.py", line 46, in wrapped
+    return view(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\auth.py", line 57, in wrapped
+    return view(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\controllers\product_controller.py", line 36, in create_product
+    product_id = products.create(values)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\models\product_model.py", line 45, in create
+    cursor = get_db().execute(
+             ^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+___________ test_overflowing_order_total_is_rejected_without_writes ___________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoxfQ.atqrvw.Fccau60n-gW8QQ34zp4lYa3-DK0'}
+customer_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoyfQ.atqrvw.l_Yt1DQcMN2fo1bM6NRkwX9gaGs'}
+
+    def test_overflowing_order_total_is_rejected_without_writes(application, client, admin_headers, customer_headers):
+        import database
+        updated = client.put('/produtos/2', headers=admin_headers,
+                             json={'nome': 'Limite finito', 'preco': 1e308, 'estoque': 4})
+        assert updated.status_code == 200
+        with application.app_context():
+            before = database.get_db().execute('SELECT COUNT(*) FROM pedidos').fetchone()[0]
+        response = client.post('/pedidos', headers=customer_headers, json={
+            'usuario_id': 2, 'itens': [{'produto_id': 2, 'quantidade': 2}],
+        })
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:84: AssertionError
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_nonfinite_product_prices_are_rejected[inf]
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_nonfinite_product_prices_are_rejected[nan]
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_nonfinite_product_prices_are_rejected[10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000]
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_overflowing_order_total_is_rejected_without_writes
+4 failed, 18 deselected in 2.10s

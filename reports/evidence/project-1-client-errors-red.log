@@ -1,0 +1,35 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____________________ test_client_errors_keep_http_status _____________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoxfQ.atqr2w.dVVs8tRhDAHVzG-bv4imogo8AGU'}
+
+    def test_client_errors_keep_http_status(client, admin_headers):
+>       assert client.get('/missing').status_code == 404
+E       AssertionError: assert 500 == 404
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+E        +    where <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]> = get('/missing')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_security_and_integrity.py:91: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    app:errors.py:44 Unexpected application error
+Traceback (most recent call last):
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_client_errors_keep_http_status
+1 failed, 22 deselected in 0.93s

@@ -1,0 +1,27 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test test/*.test.js
+
+✔ external configuration validates required signing secret, seed credentials, TTL and port (2.9905ms)
+✔ salted password storage rejects incorrect password and malformed legacy values (274.2003ms)
+✔ all checkout boundaries, success shapes, identity proof, refusal and safe logs (582.5948ms)
+✔ login, authorization, forged/expired tokens and current role and active state (409.9818ms)
+✔ self/admin lifecycle deletes unreferenced users and deactivates referenced users preserving financial history (624.2426ms)
+✔ each write failure rolls back the entire checkout, and concurrent operations stay isolated (1408.3717ms)
+✔ database failures in lookup/report/delete return 500 without leaking SQL or claiming success (184.7116ms)
+QUERY_COUNT: 1 enrollment=2; 20 enrollments=2; includes current-user authentication
+✔ report constant query count, exact response shape, empty courses and paid/denied aggregation (1757.5043ms)
+✔ readiness fails cleanly for an existing legacy schema rather than reseeding or dropping data (37.4581ms)
+✔ controlled legacy migration preserves records and finances, disables ambiguous credentials, and explicit reset enables login (289.0272ms)
+✔ startup against an existing current database never reseeds or overwrites rows (199.0683ms)
+✔ concurrent failing and successful transactions do not share rollback state (272.0504ms)
+BASELINE: all 3 original method/path pairs; paid/denied/missing/course absent/report/delete; unsafe side effects characterized; no external charges
+✔ original three HTTP contracts on a disposable in-memory database (305.8366ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6781.5877

@@ -1,0 +1,58 @@
+GET /: expected=200 observed=200 PASS
+GET /health: expected=200 observed=200 PASS
+GET /tasks: expected=200 observed=200 PASS
+GET /tasks/1: expected=200 observed=200 PASS
+POST /tasks: expected=201 observed=201 PASS
+PUT /tasks/1: expected=200 observed=200 PASS
+GET /tasks/search?q=HTTP: expected=200 observed=200 PASS
+GET /tasks/stats: expected=200 observed=200 PASS
+GET /users: expected=200 observed=200 PASS
+GET /users/2: expected=200 observed=200 PASS
+POST /users: expected=201 observed=201 PASS
+PUT /users/2: expected=200 observed=200 PASS
+GET /users/2/tasks: expected=200 observed=200 PASS
+POST /login: expected=200 observed=200 PASS
+GET /reports/summary: expected=200 observed=200 PASS
+GET /reports/user/2: expected=200 observed=200 PASS
+GET /categories: expected=200 observed=200 PASS
+POST /categories: expected=201 observed=201 PASS
+PUT /categories/2: expected=200 observed=200 PASS
+DELETE /categories/2: expected=200 observed=200 PASS
+DELETE /tasks/1: expected=200 observed=200 PASS
+DELETE /users/3: expected=200 observed=200 PASS
+Negative real HTTP: anonymous 401 and ordinary-user admin denial 403 PASS
+HTTP_MATRIX 22/22 PASS
+REAL_PROCESS_BOOT_LOG
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:49287
+Press CTRL+C to quit
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /tasks HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "POST /tasks HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "PUT /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /tasks/search?q=HTTP HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /tasks/stats HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /users HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:12] "GET /users/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "POST /users HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "PUT /users/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /users/2/tasks HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /reports/summary HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /reports/user/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /categories HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "POST /categories HTTP/1.1" 201 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "PUT /categories/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "DELETE /categories/2 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "DELETE /tasks/1 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "DELETE /users/3 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /tasks HTTP/1.1" 401 -
+127.0.0.1 - - [22/Oct/2026 21:40:13] "GET /users HTTP/1.1" 403 -
+

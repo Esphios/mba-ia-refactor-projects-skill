@@ -1,0 +1,3 @@
+.......................................................QUERY_COUNTS {'/tasks': 2, '/users': 3, '/categories': 3, '/reports/summary': 6} {'/tasks': 2, '/users': 3, '/categories': 3, '/reports/summary': 6}
+.............
+68 passed in 63.25s (0:01:03)

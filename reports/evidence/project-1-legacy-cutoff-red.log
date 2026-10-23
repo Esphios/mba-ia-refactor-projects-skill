@@ -1,0 +1,54 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_________________ test_legacy_password_fallback_has_a_cutoff __________________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+
+    def test_legacy_password_fallback_has_a_cutoff(application, client):
+        application.config['LEGACY_PASSWORD_CUTOFF'] = '2000-01-01T00:00:00+00:00'
+        response = client.post('/login', json={
+            'email': 'joao@email.com', 'senha': 'customer-test-password',
+        })
+>       assert response.status_code == 401
+E       assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:9: AssertionError
+________________ test_legacy_unicode_password_can_be_upgraded _________________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+
+    def test_legacy_unicode_password_can_be_upgraded(application, client):
+        import database
+        with application.app_context():
+            connection = database.get_db()
+            connection.execute('UPDATE usuarios SET senha = ? WHERE id = 2', ('senha-com-acentua��o',))
+            connection.commit()
+        response = client.post('/login', json={
+            'email': 'joao@email.com', 'senha': 'senha-com-acentua��o',
+        })
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:21: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    app:errors.py:44 Unexpected application error
+Traceback (most recent call last):
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\.venv-refactor\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\controllers\user_controller.py", line 45, in login
+    user = users.authenticate(email, password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\code-smells-project\models\user_model.py", line 58, in authenticate
+    valid = hmac.compare_digest(stored, password)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: comparing strings with non-ASCII characters is not supported
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_legacy_password_fallback_has_a_cutoff
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_legacy_unicode_password_can_be_upgraded
+2 failed, 15 deselected in 1.06s

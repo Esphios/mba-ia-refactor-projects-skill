@@ -1,0 +1,16 @@
+Task criada: 1 - Baseline task
+{
+  "runtime": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "versions": {
+    "Flask": "3.0.0",
+    "Flask-SQLAlchemy": "3.1.1",
+    "SQLAlchemy": "2.1.6",
+    "Werkzeug": "3.1.9",
+    "itsdangerous": "2.2.0"
+  },
+  "registered_pairs": 20,
+  "login_status": 200,
+  "password_exposed": true,
+  "anonymous_users_status": 200,
+  "task_create_status": 201
+}

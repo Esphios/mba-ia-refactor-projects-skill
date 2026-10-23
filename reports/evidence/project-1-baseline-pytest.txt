@@ -1,0 +1,522 @@
+..F.FFFFFFFFFFFFFFFFFFFFFF......                                         [100%]
+================================== FAILURES ===================================
+_______________ test_product_search_contract_and_invalid_number _______________
+
+client = <FlaskClient <Flask 'app'>>
+
+    def test_product_search_contract_and_invalid_number(client):
+        response = client.get("/produtos/busca?q=Mouse&preco_min=80&preco_max=100")
+        assert response.status_code == 200
+        assert [item["nome"] for item in response.get_json()["dados"]] == ["Mouse Wireless"]
+    
+        invalid = client.get("/produtos/busca?preco_min=not-a-number")
+>       assert invalid.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_http_contracts.py:20: AssertionError
+______ test_create_product_requires_admin_and_preserves_success_contract ______
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_create_product_requires_admin_and_preserves_success_contract(client, admin_headers):
+        denied = client.post("/produtos", json={"nome": "Livro", "preco": 50, "estoque": 2})
+>       assert denied.status_code == 401
+E       assert 201 == 401
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_http_contracts.py:32: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+---------------------------- Captured stdout call -----------------------------
+Produto criado com ID: 11
+________ test_update_product_requires_admin_and_uses_shared_validation ________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_update_product_requires_admin_and_uses_shared_validation(client, admin_headers):
+        denied = client.put("/produtos/1", json={"nome": "Notebook", "preco": 1, "estoque": 1})
+>       assert denied.status_code == 401
+E       assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+code-smells-project\tests\test_http_contracts.py:45: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+_____ test_delete_product_blocks_historical_reference_but_deletes_unused ______
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_delete_product_blocks_historical_reference_but_deletes_unused(client, admin_headers):
+        order = client.post(
+            "/pedidos",
+            headers=auth_headers_for(client, "joao@email.com", "123456"),
+            json={"usuario_id": 2, "itens": [{"produto_id": 1, "quantidade": 1}]},
+        )
+        assert order.status_code == 201
+>       assert client.delete("/produtos/1", headers=admin_headers).status_code == 409
+E       AssertionError: assert 200 == 409
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = delete('/produtos/1', headers={'Authorization': 'Bearer legacy-login-issued-no-token'})
+E        +      where delete = <FlaskClient <Flask 'app'>>.delete
+
+code-smells-project\tests\test_http_contracts.py:69: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+---------------------------- Captured stdout call -----------------------------
+Login bem-sucedido: joao@email.com
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+Produto 1 deletado
+__________ test_list_users_is_admin_only_and_never_returns_password ___________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_list_users_is_admin_only_and_never_returns_password(client, admin_headers, customer_headers):
+>       assert client.get("/usuarios").status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/usuarios')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_http_contracts.py:75: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+___________________ test_user_detail_allows_owner_or_admin ____________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_user_detail_allows_owner_or_admin(client, admin_headers, customer_headers):
+        assert client.get("/usuarios/2", headers=customer_headers).status_code == 200
+>       assert client.get("/usuarios/3", headers=customer_headers).status_code == 403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/usuarios/3', headers={'Authorization': 'Bearer legacy-login-issued-no-token'})
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_http_contracts.py:84: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+__________ test_create_user_is_public_and_duplicate_email_conflicts ___________
+
+client = <FlaskClient <Flask 'app'>>
+
+    def test_create_user_is_public_and_duplicate_email_conflicts(client):
+        payload = {"nome": "Nova", "email": "nova@example.test", "senha": "safe-password"}
+        response = client.post("/usuarios", json=payload)
+        assert response.status_code == 201
+>       assert client.post("/usuarios", json=payload).status_code == 409
+E       AssertionError: assert 201 == 409
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +    where <WrapperTestResponse streamed [201 CREATED]> = post('/usuarios', json={'email': 'nova@example.test', 'nome': 'Nova', 'senha': 'safe-password'})
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_http_contracts.py:94: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Usu�rio criado: nova@example.test
+Usu�rio criado: nova@example.test
+___________ test_login_returns_expiring_token_and_rejects_injection ___________
+
+client = <FlaskClient <Flask 'app'>>
+
+    def test_login_returns_expiring_token_and_rejects_injection(client):
+        response = client.post("/login", json={"email": "joao@email.com", "senha": "123456"})
+        assert response.status_code == 200
+>       assert isinstance(response.get_json().get("token"), str)
+E       AssertionError: assert False
+E        +  where False = isinstance(None, str)
+E        +    where None = <built-in method get of dict object at 0x0000023A5DD8DE00>('token')
+E        +      where <built-in method get of dict object at 0x0000023A5DD8DE00> = {'dados': {'email': 'joao@email.com', 'id': 2, 'nome': 'Jo�o Silva', 'tipo': 'cliente'}, 'mensagem': 'Login OK', 'sucesso': True}.get
+E        +        where {'dados': {'email': 'joao@email.com', 'id': 2, 'nome': 'Jo�o Silva', 'tipo': 'cliente'}, 'mensagem': 'Login OK', 'sucesso': True} = get_json()
+E        +          where get_json = <WrapperTestResponse 163 bytes [200 OK]>.get_json
+
+code-smells-project\tests\test_http_contracts.py:100: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Login bem-sucedido: joao@email.com
+____________ test_create_order_requires_owner_and_preserves_total _____________
+
+client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_create_order_requires_owner_and_preserves_total(client, customer_headers):
+>       assert client.post(
+            "/pedidos", json={"usuario_id": 2, "itens": [{"produto_id": 2, "quantidade": 2}]}
+        ).status_code == 401
+E       AssertionError: assert 201 == 401
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +    where <WrapperTestResponse streamed [201 CREATED]> = post('/pedidos', json={'itens': [{'produto_id': 2, 'quantidade': 2}], 'usuario_id': 2})
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_http_contracts.py:108: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+_____________________ test_list_all_orders_is_admin_only ______________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_list_all_orders_is_admin_only(client, admin_headers, customer_headers):
+>       assert client.get("/pedidos").status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/pedidos')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_http_contracts.py:122: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+__________________ test_list_user_orders_enforces_ownership ___________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_list_user_orders_enforces_ownership(client, admin_headers, customer_headers):
+>       assert client.get("/pedidos/usuario/3", headers=customer_headers).status_code == 403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/pedidos/usuario/3', headers={'Authorization': 'Bearer legacy-login-issued-no-token'})
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_http_contracts.py:130: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+_________ test_update_order_status_requires_admin_and_reports_missing _________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_update_order_status_requires_admin_and_reports_missing(client, admin_headers, customer_headers):
+>       assert client.put(
+            "/pedidos/999/status", headers=customer_headers, json={"status": "aprovado"}
+        ).status_code == 403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = put('/pedidos/999/status', headers={'Authorization': 'Bearer legacy-login-issued-no-token'}, json={'status': 'aprovado'})
+E        +      where put = <FlaskClient <Flask 'app'>>.put
+
+code-smells-project\tests\test_http_contracts.py:136: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+NOTIFICA��O: Pedido 999 foi aprovado! Preparar envio.
+_______________________ test_sales_report_is_admin_only _______________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_sales_report_is_admin_only(client, admin_headers, customer_headers):
+>       assert client.get("/relatorios/vendas").status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/relatorios/vendas')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_http_contracts.py:145: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+________________ test_health_contract_is_public_and_sanitized _________________
+
+client = <FlaskClient <Flask 'app'>>
+
+    def test_health_contract_is_public_and_sanitized(client):
+        response = client.get("/health")
+        assert response.status_code == 200
+        assert response.get_json()["status"] == "ok"
+>       assert {"secret_key", "db_path", "debug"}.isdisjoint(response.get_json())
+E       AssertionError: assert False
+E        +  where False = <built-in method isdisjoint of set object at 0x0000023A5DD25700>({'ambiente': 'producao', 'counts': {'pedidos': 0, 'produtos': 10, 'usuarios': 3}, 'database': 'connected', 'db_path': 'loja.db', ...})
+E        +    where <built-in method isdisjoint of set object at 0x0000023A5DD25700> = {'db_path', 'debug', 'secret_key'}.isdisjoint
+E        +    and   {'ambiente': 'producao', 'counts': {'pedidos': 0, 'produtos': 10, 'usuarios': 3}, 'database': 'connected', 'db_path': 'loja.db', ...} = get_json()
+E        +      where get_json = <WrapperTestResponse 260 bytes [200 OK]>.get_json
+
+code-smells-project\tests\test_http_contracts.py:156: AssertionError
+__________ test_reset_database_requires_admin_and_remains_functional __________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_reset_database_requires_admin_and_remains_functional(client, admin_headers):
+>       assert client.post("/admin/reset-db").status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = post('/admin/reset-db')
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_http_contracts.py:160: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+---------------------------- Captured stdout call -----------------------------
+!!! BANCO DE DADOS RESETADO !!!
+_____________ test_admin_query_retains_select_and_write_for_admin _____________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_admin_query_retains_select_and_write_for_admin(client, admin_headers, customer_headers):
+>       assert client.post("/admin/query", json={"sql": "SELECT 1"}).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = post('/admin/query', json={'sql': 'SELECT 1'})
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_http_contracts.py:168: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+_______ test_order_rejects_nonpositive_quantity_without_changing_stock ________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_order_rejects_nonpositive_quantity_without_changing_stock(application, client, customer_headers):
+        before = client.get("/produtos/1").get_json()["dados"]["estoque"]
+        response = client.post(
+            "/pedidos",
+            headers=customer_headers,
+            json={"usuario_id": 2, "itens": [{"produto_id": 1, "quantidade": -1}]},
+        )
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:11: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+_________ test_order_aggregates_duplicate_products_before_stock_check _________
+
+client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_order_aggregates_duplicate_products_before_stock_check(client, customer_headers):
+        response = client.post(
+            "/pedidos",
+            headers=customer_headers,
+            json={
+                "usuario_id": 2,
+                "itens": [
+                    {"produto_id": 6, "quantidade": 5},
+                    {"produto_id": 6, "quantidade": 5},
+                ],
+            },
+        )
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security_and_integrity.py:27: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+_________________ test_order_rolls_back_if_item_insert_fails __________________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_order_rolls_back_if_item_insert_fails(application, client, customer_headers):
+        import database
+    
+        with application.app_context():
+            database.get_db().execute("""
+                CREATE TRIGGER fail_second_item
+                BEFORE INSERT ON itens_pedido
+                WHEN NEW.produto_id = 2
+                BEGIN
+                    SELECT RAISE(ABORT, 'induced item failure');
+                END
+            """)
+            database.get_db().commit()
+        before_one = client.get("/produtos/1").get_json()["dados"]["estoque"]
+        before_two = client.get("/produtos/2").get_json()["dados"]["estoque"]
+    
+        response = client.post(
+            "/pedidos",
+            headers=customer_headers,
+            json={
+                "usuario_id": 2,
+                "itens": [
+                    {"produto_id": 1, "quantidade": 1},
+                    {"produto_id": 2, "quantidade": 1},
+                ],
+            },
+        )
+        assert response.status_code == 500
+>       assert client.get("/produtos/1").get_json()["dados"]["estoque"] == before_one
+E       assert 9 == 10
+
+code-smells-project\tests\test_security_and_integrity.py:59: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ERRO CRITICO ao criar pedido: induced item failure
+__________________ test_cancelling_order_restores_stock_once __________________
+
+client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_cancelling_order_restores_stock_once(client, admin_headers, customer_headers):
+        before = client.get("/produtos/2").get_json()["dados"]["estoque"]
+        created = client.post(
+            "/pedidos",
+            headers=customer_headers,
+            json={"usuario_id": 2, "itens": [{"produto_id": 2, "quantidade": 3}]},
+        )
+        order_id = created.get_json()["dados"]["pedido_id"]
+        assert client.get("/produtos/2").get_json()["dados"]["estoque"] == before - 3
+    
+        cancelled = client.put(
+            f"/pedidos/{order_id}/status", headers=admin_headers, json={"status": "cancelado"}
+        )
+        assert cancelled.status_code == 200
+>       assert client.get("/produtos/2").get_json()["dados"]["estoque"] == before
+E       assert 47 == 50
+
+code-smells-project\tests\test_security_and_integrity.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+NOTIFICA��O: Pedido 1 cancelado. Devolver estoque.
+_________ test_passwords_are_hashed_and_legacy_login_upgrades_storage _________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+
+    def test_passwords_are_hashed_and_legacy_login_upgrades_storage(application, client):
+        import database
+    
+        response = client.post("/login", json={"email": "joao@email.com", "senha": "123456"})
+        assert response.status_code == 200
+        with application.app_context():
+            stored = database.get_db().execute(
+                "SELECT senha FROM usuarios WHERE email = ?", ("joao@email.com",)
+            ).fetchone()[0]
+>       assert stored != "123456"
+E       AssertionError: assert '123456' != '123456'
+
+code-smells-project\tests\test_security_and_integrity.py:92: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Login bem-sucedido: joao@email.com
+________________ test_token_tampering_and_expiry_are_rejected _________________
+
+client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_token_tampering_and_expiry_are_rejected(client, customer_headers):
+        import time
+    
+        from itsdangerous import URLSafeTimedSerializer
+        from itsdangerous.timed import TimestampSigner
+    
+        token = customer_headers["Authorization"].removeprefix("Bearer ")
+        tampered = token[:-1] + ("a" if token[-1] != "a" else "b")
+>       assert client.get("/usuarios/2", headers={"Authorization": f"Bearer {tampered}"}).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/usuarios/2', headers={'Authorization': 'Bearer legacy-login-issued-no-tokea'})
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_security_and_integrity.py:104: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: joao@email.com
+________________ test_order_listing_uses_bounded_select_count _________________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+admin_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+customer_headers = {'Authorization': 'Bearer legacy-login-issued-no-token'}
+
+    def test_order_listing_uses_bounded_select_count(application, client, admin_headers, customer_headers):
+        for _ in range(3):
+            response = client.post(
+                "/pedidos",
+                headers=customer_headers,
+                json={"usuario_id": 2, "itens": [{"produto_id": 2, "quantidade": 1}]},
+            )
+            assert response.status_code == 201
+    
+        import database
+    
+        statements = []
+        with application.app_context():
+            connection = database.get_db()
+            connection.set_trace_callback(statements.append)
+            response = client.get("/pedidos", headers=admin_headers)
+            connection.set_trace_callback(None)
+    
+        assert response.status_code == 200
+        selects = [statement for statement in statements if statement.lstrip().upper().startswith("SELECT")]
+>       assert len(selects) <= 2
+E       AssertionError: assert 7 <= 2
+E        +  where 7 = len(['SELECT * FROM pedidos', 'SELECT * FROM itens_pedido WHERE pedido_id = 1', 'SELECT nome FROM produtos WHERE id = 2', ... WHERE pedido_id = 2', 'SELECT nome FROM produtos WHERE id = 2', 'SELECT * FROM itens_pedido WHERE pedido_id = 3', ...])
+
+code-smells-project\tests\test_security_and_integrity.py:141: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@loja.com
+Login bem-sucedido: joao@email.com
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+ENVIANDO EMAIL: Pedido 2 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+ENVIANDO EMAIL: Pedido 3 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_http_contracts.py::test_product_search_contract_and_invalid_number
+FAILED code-smells-project/tests/test_http_contracts.py::test_create_product_requires_admin_and_preserves_success_contract
+FAILED code-smells-project/tests/test_http_contracts.py::test_update_product_requires_admin_and_uses_shared_validation
+FAILED code-smells-project/tests/test_http_contracts.py::test_delete_product_blocks_historical_reference_but_deletes_unused
+FAILED code-smells-project/tests/test_http_contracts.py::test_list_users_is_admin_only_and_never_returns_password
+FAILED code-smells-project/tests/test_http_contracts.py::test_user_detail_allows_owner_or_admin
+FAILED code-smells-project/tests/test_http_contracts.py::test_create_user_is_public_and_duplicate_email_conflicts
+FAILED code-smells-project/tests/test_http_contracts.py::test_login_returns_expiring_token_and_rejects_injection
+FAILED code-smells-project/tests/test_http_contracts.py::test_create_order_requires_owner_and_preserves_total
+FAILED code-smells-project/tests/test_http_contracts.py::test_list_all_orders_is_admin_only
+FAILED code-smells-project/tests/test_http_contracts.py::test_list_user_orders_enforces_ownership
+FAILED code-smells-project/tests/test_http_contracts.py::test_update_order_status_requires_admin_and_reports_missing
+FAILED code-smells-project/tests/test_http_contracts.py::test_sales_report_is_admin_only
+FAILED code-smells-project/tests/test_http_contracts.py::test_health_contract_is_public_and_sanitized
+FAILED code-smells-project/tests/test_http_contracts.py::test_reset_database_requires_admin_and_remains_functional
+FAILED code-smells-project/tests/test_http_contracts.py::test_admin_query_retains_select_and_write_for_admin
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_order_rejects_nonpositive_quantity_without_changing_stock
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_order_aggregates_duplicate_products_before_stock_check
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_order_rolls_back_if_item_insert_fails
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_cancelling_order_restores_stock_once
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_passwords_are_hashed_and_legacy_login_upgrades_storage
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_token_tampering_and_expiry_are_rejected
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_order_listing_uses_bounded_select_count
+23 failed, 9 passed in 1.91s

@@ -1,0 +1,17 @@
+{
+  "task-manager-api/app.py": "5589fe307799449d446d081d4de702b7cf37eafa1b2ec7aa7463057f66531558",
+  "task-manager-api/database.py": "80ed315e56743af6c322cbea92e65105b3873dff3a98c99de3ce94ae07becac5",
+  "task-manager-api/models/__init__.py": "706f2d67d6d11df57f0a3b12e0bf88827e9e56a53171a190a19c572186be41d0",
+  "task-manager-api/models/category.py": "3e60ddfb42637b54df550f07c1640e8e0370c34fe3a012dfd3dadcaed0cfeec5",
+  "task-manager-api/models/task.py": "c4aeb49b843740023830ebb577fc5853936651a32076fa94fde686c997b25fda",
+  "task-manager-api/models/user.py": "bb5e52494c02d7de4c467f51811778677e3b2a0cc864b93298f18edfb1531c97",
+  "task-manager-api/routes/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "task-manager-api/routes/report_routes.py": "6b930f7c3986ad595ea6df368bd32742f7326b91b7ef3f2040d971cdf2c8b7d5",
+  "task-manager-api/routes/task_routes.py": "1b3a327029c9b6fe5321ad817d79d2bc4cbf851d2aa0b24b3d27d2cdbbfc5425",
+  "task-manager-api/routes/user_routes.py": "3835f0e9be7f657bf2f8b82603ab428a048517aed0c7c8db6a0f9ae79b8fc350",
+  "task-manager-api/seed.py": "828707cd10f7ce3de634ae558d82d1ac5492f32826b8c0ec054640f7660cee48",
+  "task-manager-api/services/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "task-manager-api/services/notification_service.py": "ee009841e2c547a41b6646a764e92b32db834970130540162991827bf7554bff",
+  "task-manager-api/utils/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "task-manager-api/utils/helpers.py": "c1d07041b969c9bbf28d15a3f299127134184aceae1d35c86bbf7b9ef8cdb5f4"
+}

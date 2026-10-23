@@ -1,0 +1,18 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+________ test_create_description_defaults_and_explicit_null_preserved _________
+
+client = <FlaskClient <Flask 'app'>>
+tokens = {'admin': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}, 'other': {'Authorization'...I5T7BuJ_FNjfst7nEZImcOBs'}, 'owner': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}}
+
+    def test_create_description_defaults_and_explicit_null_preserved(client,tokens):
+        for path,payload,headers in [('/tasks',{'title':'Default description'},tokens['owner']),('/categories',{'name':'Default description'},tokens['admin'])]:
+            response=client.post(path,json=payload,headers=headers)
+            assert response.status_code==201
+>           assert response.json['description']==''
+E           AssertionError: assert None == ''
+
+task-manager-api\tests\test_contracts.py:268: AssertionError
+=========================== short test summary info ===========================
+FAILED task-manager-api/tests/test_contracts.py::test_create_description_defaults_and_explicit_null_preserved
+1 failed, 64 deselected in 1.47s

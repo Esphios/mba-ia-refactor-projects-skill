@@ -1,0 +1,51 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test:http
+> node test/run-http-matrix.js
+
+{"event":"ready","port":60185,"database":"file"}
+{"node":"v24.12.0","express":"4.22.3","sqlite3":"6.0.1","sqlite":"3.52.0","database":"disposable temporary file","listening_after_schema":true}
+{"case":"anonymous report","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"anonymous deletion","method":"DELETE","path":"/api/users/1","expected":401,"observed":401,"passed":true}
+{"case":"login bad input","method":"POST","path":"/api/auth/login","expected":400,"observed":400,"passed":true}
+{"case":"login invalid credentials","method":"POST","path":"/api/auth/login","expected":401,"observed":401,"passed":true}
+{"case":"administrator login","method":"POST","path":"/api/auth/login","expected":200,"observed":200,"passed":true}
+{"case":"checkout missing input","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout invalid card type","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout missing new-account password","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"case":"checkout absent course","method":"POST","path":"/api/checkout","expected":404,"observed":404,"passed":true}
+{"case":"checkout denied","method":"POST","path":"/api/checkout","expected":400,"observed":400,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":1}
+{"case":"checkout approved shape","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"student login","method":"POST","path":"/api/auth/login","expected":200,"observed":200,"passed":true}
+{"case":"student report denied","method":"GET","path":"/api/admin/financial-report","expected":403,"observed":403,"passed":true}
+{"case":"student cannot delete administrator","method":"DELETE","path":"/api/users/1","expected":403,"observed":403,"passed":true}
+{"case":"checkout existing identity missing","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"checkout existing wrong password","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":2}
+{"case":"checkout existing bearer identity","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"tampered credential","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"expired credential","method":"GET","path":"/api/admin/financial-report","expected":401,"observed":401,"passed":true}
+{"case":"administrator report authorized","method":"GET","path":"/api/admin/financial-report","expected":200,"observed":200,"passed":true}
+{"case":"delete invalid ID","method":"DELETE","path":"/api/users/bad","expected":400,"observed":400,"passed":true}
+{"case":"delete absent user","method":"DELETE","path":"/api/users/9999","expected":404,"observed":404,"passed":true}
+{"case":"induced payment failure rollback","method":"POST","path":"/api/checkout","expected":500,"observed":500,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":3}
+{"case":"concurrent 0","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":4}
+{"case":"concurrent 1","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":5}
+{"case":"concurrent 2","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":6}
+{"case":"concurrent 3","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"event":"checkout","outcome":"PAID","enrollment_id":7}
+{"case":"concurrent 4","method":"POST","path":"/api/checkout","expected":200,"observed":200,"passed":true}
+{"case":"self deactivation preserves financial history","method":"DELETE","path":"/api/users/2","expected":200,"observed":200,"passed":true}
+{"case":"deactivated identity denied","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"administrator physical deletion without relationships","method":"DELETE","path":"/api/users/8","expected":200,"observed":200,"passed":true}
+{"case":"delete database failure","method":"DELETE","path":"/api/users/1","expected":500,"observed":500,"passed":true}
+{"case":"report database failure","method":"GET","path":"/api/admin/financial-report","expected":500,"observed":500,"passed":true}
+{"case":"checkout database failure","method":"POST","path":"/api/checkout","expected":401,"observed":401,"passed":true}
+{"case":"checkout database lookup failure","method":"POST","path":"/api/checkout","expected":500,"observed":500,"passed":true}
+HTTP_MATRIX_PASS: all 3 original endpoints and new login; success/denial/errors/rollback/concurrency verified against a real child process
+{"event":"stopped"}
+STARTUP_FAILURE_PASS: missing required signing secret exits 1 without listening

@@ -427,6 +427,233 @@ A skill deve atingir os seguintes mínimos em **todos os 3 projetos**:
 
 > **Sobre o projeto 3 (task-manager-api):** Este projeto já possui alguma organização. "aplicação funciona" significa que a API inicia sem erros e todos os endpoints continuam respondendo corretamente.
 
+## Análise Manual
+
+A análise manual inicial usou a revisão
+`6d1ce6248c3e956801010a89d8bdaab48029bf30`. A conferência de 22/10/2026,
+posterior ao pacote inicial da skill, corrigiu evidências e separou exposição de
+hash de armazenamento MD5. As linhas permanecem resolvíveis na revisão-base e
+formam o gabarito de comparação para a auditoria independente.
+
+### Projeto 1 — code-smells-project
+
+| ID | Severidade | Evidência | Justificativa |
+| --- | --- | --- | --- |
+| P1-01 | CRITICAL | `models.py:105-112` | O login concatena email e senha no SQL; entrada controla a consulta e pode contornar a autenticação. |
+| P1-02 | MEDIUM | `models.py:171-232` | Pedidos e itens são consultados dentro de laços, fazendo o número de queries crescer com os resultados. |
+| P1-03 | MEDIUM | `controllers.py:24-96` | Criação e edição duplicam validação e já divergem nas regras de nome e categoria. |
+| P1-04 | LOW | `models.py:256-262` | Limites e percentuais de desconto aparecem como literais sem nomes, ocultando a regra de negócio. |
+| P1-05 | LOW | `models.py:2` | `sqlite3` é importado sem uso no módulo, adicionando uma dependência aparente e ruído. |
+
+### Projeto 2 — ecommerce-api-legacy
+
+| ID | Severidade | Evidência | Justificativa |
+| --- | --- | --- | --- |
+| P2-01 | CRITICAL | `src/AppManager.js:4-140` | Uma God Class reúne schema, seed, rotas, checkout, SQL, relatório e exclusão, ampliando acoplamento e impacto de falhas. |
+| P2-02 | MEDIUM | `src/AppManager.js:80-127` | Relatório executa consultas aninhadas por curso e matrícula, produzindo N+1. |
+| P2-03 | MEDIUM | `src/AppManager.js:29-35` | A entrada é validada apenas por truthiness; tipos incorretos chegam a operações de string e persistência. |
+| P2-04 | LOW | `src/AppManager.js:29-33` | Variáveis internas `u`, `e`, `p`, `cid` e `cc` dificultam rastrear o checkout sem benefício de contrato. |
+| P2-05 | LOW | `src/utils.js:10,25`; `src/AppManager.js:2` | `totalRevenue` é declarado/exportado em utils e importado sem uso em AppManager, adicionando dependência aparente e ruído. |
+
+### Projeto 3 — task-manager-api
+
+| ID | Severidade | Evidência | Justificativa |
+| --- | --- | --- | --- |
+| P3-01 | CRITICAL | `models/user.py:16-25` | A serialização retorna o hash de senha nas respostas, expondo dado sensível e permitindo tentativas offline. |
+| P3-02 | MEDIUM | `routes/task_routes.py:14-58` | A listagem busca usuário e categoria para cada tarefa, causando N+1. |
+| P3-03 | MEDIUM | `routes/task_routes.py:16-37,70-80` | Serialização e cálculo de atraso são duplicados e divergem do model. |
+| P3-04 | LOW | `routes/task_routes.py:7` | Imports `json`, `os`, `sys` e `time` não usados escondem as dependências efetivas. |
+| P3-05 | LOW | `routes/task_routes.py:110-113` | Limites de prioridade 1 e 5 são repetidos apesar de já existirem constantes em `utils`. |
+| P3-06 | HIGH | `models/user.py:27-32` | MD5 é rápido e sem salt individual; não é mecanismo adequado para armazenar senhas. |
+
+Além desses dezesseis itens, a auditoria deverá verificar segredos fixos,
+exposição em health/logs, autorização administrativa, token falso, atomicidade e
+APIs deprecated conforme a versão realmente aplicável. O inventário completo de
+contratos e a matriz de autorização estão em `reports/planning/contracts.md`.
+
+## Construção da Skill
+
+A solução usa Codex com um pacote autossuficiente por projeto. A cópia canônica
+fica em [code-smells-project/.agents/skills/refactor-arch](code-smells-project/.agents/skills/refactor-arch/SKILL.md).
+As cópias de [Express](ecommerce-api-legacy/.agents/skills/refactor-arch/SKILL.md)
+e [Task Manager](task-manager-api/.agents/skills/refactor-arch/SKILL.md) possuem o
+mesmo conteúdo. O manifesto final e as avaliações estão em
+[skill-evaluation.md](reports/skill-evaluation.md).
+
+```text
+.agents/skills/refactor-arch/
+  SKILL.md
+  references/
+    project-analysis.md
+    anti-patterns.md
+    audit-report-template.md
+    mvc-guidelines.md
+    refactoring-playbook.md
+    validation.md
+```
+
+O arquivo principal coordena análise, auditoria e transformação; referências são
+lidas conforme a fase. O catálogo reúne doze famílias: SQL injection, segredos,
+God Class, senhas/tokens, autorização, estado compartilhado, escritas parciais,
+N+1, duplicação, deprecações, valores mágicos e nomes/código morto. Cada família
+possui exemplo concreto antes/depois, explicação, contexto e verificação. As quatro
+severidades seguem impacto e evidência; SQL parametrizado não é injection, e uma
+API antiga não é automaticamente deprecated.
+
+A portabilidade vem das responsabilidades MVC e da descoberta por manifests,
+imports e fluxos completos. SQLite direto recebe conexão por contexto; SQLite
+callback exige serializar toda a transação; ORM aproveita entidades e blueprints
+existentes. Serviços adicionais coordenam transações e integrações, sem substituir
+Models, Views/Routes e Controllers. O pacote não depende de caminhos absolutos,
+skills pessoais ou bibliotecas de uma stack específica. Texto e exemplos são
+próprios; a implementação de referência fornecida não é distribuída.
+
+Os principais desafios foram preservar operações administrativas legítimas,
+separar contratos inseguros de regressões, migrar senhas sem apagar dados e testar
+integridade sob falha. O console SQL do projeto 1 continua funcional para admin;
+o projeto 2 preserva histórico financeiro; o projeto 3 verifica identidade e
+propriedade em cada domínio. Falsos positivos, recusa, seleção parcial e limite de
+três ciclos são avaliados separadamente dos testes das aplicações.
+
+A skill mantém aprovação humana entre fases 2 e 3. Nesta entrega o usuário
+substituiu expressamente as pausas restantes por “ignore as aprovações por
+enquanto. continue até o fim.” Essa exceção de sessão é registrada nas auditorias
+e não altera o procedimento reutilizável nem conta como teste de aprovação.
+
+## Resultados
+
+Os números abaixo pertencem às auditorias iniciais dos legados, anteriores à
+refatoração. Os exemplos e mínimos do enunciado acima não são resultados medidos.
+
+| Projeto | CRITICAL | HIGH | MEDIUM | LOW | Total | Auditoria e validação |
+|---|---:|---:|---:|---:|---:|---|
+| Flask e-commerce | 5 | 4 | 4 | 2 | 15 | [auditoria](reports/audit-project-1.md), [validação](reports/validation-project-1.md) |
+| Express LMS | 2 | 4 | 1 | 2 | 9 | [auditoria](reports/audit-project-2.md), [validação](reports/validation-project-2.md) |
+| Flask Task Manager | 1 | 3 | 3 | 2 | 9 | [auditoria](reports/audit-project-3.md), [validação](reports/validation-project-3.md) |
+
+Comparação estrutural, excluindo dependências, bancos e caches:
+
+```text
+Projeto 1 antes                 Projeto 1 depois
+app.py                         app.py + config.py + auth.py + errors.py
+database.py                    database.py
+models.py                      models/{product,user,order,report}_model.py
+controllers.py                 controllers/ + routes/ + services/
+                               tests/ + .agents/skills/refactor-arch/
+
+Projeto 2 antes                 Projeto 2 depois
+src/app.js                     src/app.js + src/server.js
+src/AppManager.js              src/config/ + src/db/ + src/models/
+src/utils.js                   src/controllers/ + src/routes/
+                               src/services/ + src/middleware/
+                               test/ + .agents/skills/refactor-arch/
+
+Projeto 3 antes                 Projeto 3 depois
+app.py + database.py           app factory + config + auth + errors
+models/                        models/ + controllers/
+routes/ com regras/queries     routes/ finas, categorias separadas
+services/ + utils/             services/ + utils/ compartilhados
+seed.py                        seed explícito + tests/ + .agents/skills/
+```
+
+As verificações individuais, contagens de testes, resultados HTTP e mapeamento
+de cada finding estão nos três relatórios de validação. A matriz cobre **19, 3 e
+22 pares originais método/caminho**, com sucesso autorizado nos endpoints
+protegidos. O login adicional do LMS é validado separadamente. Logs de falhas do
+baseline e testes RED permanecem como evidência histórica, identificados pelo
+nome; não representam falha do estado final.
+
+Checklist individual da solução (o checklist anterior é o modelo do enunciado):
+
+| Critério | Projeto 1 | Projeto 2 | Projeto 3 |
+|---|---|---|---|
+| Linguagem/framework/domínio detectados | [x] Python/Flask/e-commerce | [x] JS/Express/LMS | [x] Python/Flask/tarefas |
+| Contagem real de fontes originais | [x] 4 | [x] 3 | [x] 15 |
+| Relatório com revisão, evidências e linhas | [x] auditoria1 | [x] auditoria2 | [x] auditoria3 |
+| Findings ordenados e mínimo de cinco | [x] 15 | [x] 9 | [x] 9 |
+| Pelo menos um CRITICAL/HIGH | [x] | [x] | [x] |
+| Deprecações avaliadas por versão | [x] sem caso confirmado | [x] sem API confirmada | [x] Query.get/utcnow |
+| Gate de confirmação da skill | [x] aprovação específica | [x] waiver + recusa avaliada | [x] waiver + recusa avaliada |
+| Diretórios e responsabilidades MVC | [x] | [x] | [x] |
+| Configuração externa | [x] | [x] | [x] |
+| Models abstraem persistência | [x] | [x] | [x] |
+| Views/Routes separadas | [x] | [x] | [x] |
+| Controllers coordenam fluxos | [x] | [x] | [x] |
+| Erros centralizados | [x] | [x] | [x] |
+| Entry point e boot real | [x] app.py | [x] server.js | [x] app.py/factory |
+| Contratos originais com sucesso autorizado | [x] 19/19 | [x] 3/3 | [x] 22/22 |
+| Senhas/identidade/admin/propriedade testados | [x] | [x] | [x] |
+| Integridade, rollback e legado testados | [x] | [x] | [x] |
+
+As células apontam para as auditorias/validações vinculadas na tabela de resultados;
+nenhuma negação de acesso conta como substituto de um sucesso autorizado.
+
+O [relatório da skill](reports/skill-evaluation.md) separa descoberta/invocação,
+auditorias independentes dos originais, controles negativos, variação estrutural,
+recusa/retomada, aprovação parcial e segunda auditoria. Testes HTTP e boot são
+evidência de execução; o [validador estrutural](scripts/validate-delivery.py)
+confere arquivos, exemplos, links e igualdade dos pacotes, sem substituir esses
+testes nem revisão humana.
+
+## Como Executar
+
+Pré-requisitos: Git, Python 3.12, Node.js 24 com npm, acesso ao registro de
+dependências e Codex instalado/autenticado. Os runtimes efetivamente usados ficam
+registrados nos relatórios. SQLite é local; pagamento é simulado e SMTP fica
+desabilitado, sem cobrança ou envio externo.
+
+Para invocar a skill, entre em um projeto e inicie Codex:
+
+```powershell
+cd code-smells-project
+codex
+# No prompt do Codex: $refactor-arch
+
+cd ../ecommerce-api-legacy
+codex
+# No prompt do Codex: $refactor-arch
+
+cd ../task-manager-api
+codex
+# No prompt do Codex: $refactor-arch
+```
+
+Informe o destino `../reports/audit-project-N.md` quando quiser um novo relatório.
+Preserve as auditorias históricas usando outro nome em reexecuções. Revise o
+relatório e diferenças de contrato antes de autorizar transformação. A instalação
+local em `.agents/skills` e invocação explícita seguem a
+[documentação oficial do Codex](https://learn.chatgpt.com/docs/build-skills).
+
+Para reproduzir a entrega inteira a partir da raiz:
+
+```powershell
+python scripts/reproduce-delivery.py
+python scripts/validate-delivery.py
+python -m unittest discover -s scripts/tests -v
+```
+
+O primeiro comando cria ambientes Python locais quando necessário, instala
+requirements-dev e o lockfile npm, executa as três suítes e inicia processos reais
+com configurações temporárias. Usa bancos descartáveis e encerra os servidores.
+O log fica em `reports/evidence/reproduction.log`. Para repetir sem reinstalar:
+`python scripts/reproduce-delivery.py --skip-install`. Também aceita
+`--root <checkout>` e `--output <log>` para reprodução em checkout limpo.
+
+Setup interativo, configuração, seed opcional e testes isolados estão nos READMEs
+de [e-commerce Flask](code-smells-project/README.md),
+[LMS Express](ecommerce-api-legacy/README.md) e
+[Task Manager](task-manager-api/README.md). Cada exemplo de ambiente contém somente
+placeholders; defina valores novos localmente. Os projetos Flask usam porta 5000
+por padrão: execute um por vez ou configure portas diferentes.
+
+Antes de usar banco existente, faça backup verificado e teste em uma cópia. Não
+execute o seed destrutivo legado do Task Manager sobre dados existentes. Os boots
+refatorados não apagam bancos; seeds são explícitos. Senhas legadas são atualizadas
+somente após login válido, conforme o prazo documentado por projeto. No LMS,
+usuários vinculados são desativados mantendo matrícula/pagamento, e usuários sem
+vínculos podem ser removidos fisicamente. Rollback exige o código e backup de banco
+correspondentes: hashes fortes não devem ser revertidos para os formatos inseguros.
+
 ## Referências
 
 - [Claude Code: Skills](https://docs.anthropic.com/en/docs/claude-code/skills) — Documentação oficial sobre como criar e estruturar Skills

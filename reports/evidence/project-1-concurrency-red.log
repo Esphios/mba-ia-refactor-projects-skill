@@ -1,0 +1,54 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+______________ test_concurrent_cancellations_restore_stock_once _______________
+
+application = <Flask 'app'>, client = <FlaskClient <Flask 'app'>>
+customer_headers = {'Authorization': 'Bearer eyJ1c2VyX2lkIjoyfQ.atqrYA.4xdpXTV_XhAslog36R0nGRrXZWM'}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002020C2B7740>
+
+    def test_concurrent_cancellations_restore_stock_once(application, client, customer_headers, monkeypatch):
+        from concurrent.futures import ThreadPoolExecutor
+        from threading import Barrier
+        import database
+        from models.order_model import OrderModel
+        from services.order_service import OrderService
+        from errors import ConflictError
+    
+        before = client.get('/produtos/2').get_json()['dados']['estoque']
+        created = client.post('/pedidos', headers=customer_headers, json={
+            'usuario_id': 2, 'itens': [{'produto_id': 2, 'quantidade': 2}],
+        })
+        order_id = created.get_json()['dados']['pedido_id']
+        barrier = Barrier(2)
+        original_find = OrderModel.find
+    
+        def overlapping_read(self, identifier):
+            result = original_find(self, identifier)
+            # Force both unlocked callers to hold the same stale snapshot. A caller
+            # that owns a write transaction already serializes this boundary.
+            if not database.get_db().in_transaction:
+                barrier.wait(timeout=5)
+            return result
+    
+        monkeypatch.setattr(OrderModel, 'find', overlapping_read)
+    
+        def cancel():
+            with application.app_context():
+                try:
+                    OrderService().update_status(order_id, 'cancelado')
+                    return 'cancelled'
+                except ConflictError:
+                    return 'conflict'
+    
+        with ThreadPoolExecutor(max_workers=2) as workers:
+            results = list(workers.map(lambda _: cancel(), range(2)))
+>       assert sorted(results) == ['cancelled', 'conflict']
+E       AssertionError: assert ['cancelled', 'cancelled'] == ['cancelled', 'conflict']
+E         
+E         At index 1 diff: 'cancelled' != 'conflict'
+E         Use -v to get more diff
+
+code-smells-project\tests\test_security_and_integrity.py:63: AssertionError
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_security_and_integrity.py::test_concurrent_cancellations_restore_stock_once
+1 failed, 17 deselected in 2.73s

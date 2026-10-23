@@ -1,0 +1,21 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_error_messages_preserve_exact_portuguese_unicode ____________
+
+client = <FlaskClient <Flask 'app'>>
+tokens = {'admin': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}, 'other': {'Authorization'...62x4as6LzonNmZO900KcZMKU'}, 'owner': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}}
+
+    def test_error_messages_preserve_exact_portuguese_unicode(client,tokens):
+        malformed=client.post('/users',json=[])
+        assert malformed.status_code==400
+>       assert malformed.json=={'error':'Dados inv\u00e1lidos'}
+E       AssertionError: assert {'error': 'Dados inválidos'} == {'error': 'Dados inv�lidos'}
+E         
+E         Differing items:
+E         {'error': 'Dados inválidos'} != {'error': 'Dados inv�lidos'}
+E         Use -v to get more diff
+
+task-manager-api\tests\test_contracts.py:276: AssertionError
+=========================== short test summary info ===========================
+FAILED task-manager-api/tests/test_contracts.py::test_error_messages_preserve_exact_portuguese_unicode
+1 failed, 65 deselected in 1.46s

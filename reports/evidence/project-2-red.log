@@ -1,0 +1,39 @@
+node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module '../src/security/passwords'
+Require stack:
+- D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\ecommerce-api-legacy\test\application.test.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+    at require (node:internal/modules/helpers:152:16)
+    at Object.<anonymous> (D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\ecommerce-api-legacy\test\application.test.js:4:40)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Docs\\Workspace\\mba-ia-workspace\\desafios\\refactor-projects-skill\\ecommerce-api-legacy\\test\\application.test.js'
+  ]
+}
+
+Node.js v24.12.0
+✖ ecommerce-api-legacy\test\application.test.js (528.0993ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 545.4692
+
+✖ failing tests:
+
+test at ecommerce-api-legacy\test\application.test.js:1:1
+✖ ecommerce-api-legacy\test\application.test.js (528.0993ms)
+  'test failed'

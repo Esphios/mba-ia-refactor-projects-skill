@@ -1,0 +1,37 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+_________________ test_user_serializer_never_exposes_password _________________
+
+    def test_user_serializer_never_exposes_password():
+        from models.user import User
+        user=User(name='User',email='user@example.com',password='sentinel')
+>       assert 'password' not in user.to_dict()
+E       AssertionError: assert 'password' not in {'active': None, 'created_at': 'None', 'email': 'user@example.com', 'id': None, ...}
+E        +  where {'active': None, 'created_at': 'None', 'email': 'user@example.com', 'id': None, ...} = to_dict()
+E        +    where to_dict = <User (transient 1585491007376)>.to_dict
+
+task-manager-api\tests\test_security.py:8: AssertionError
+_________________________ test_new_password_is_scrypt _________________________
+
+    def test_new_password_is_scrypt():
+        from models.user import User
+        user=User(); user.set_password('valid-password')
+>       assert user.password.startswith('scrypt:')
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x00000171269EF5F0>('scrypt:')
+E        +    where <built-in method startswith of str object at 0x00000171269EF5F0> = '95bbc54c1e47e038ae503754606ce662'.startswith
+E        +      where '95bbc54c1e47e038ae503754606ce662' = <User (transient 1585560924480)>.password
+
+task-manager-api\tests\test_security.py:13: AssertionError
+_____________________________ test_factory_exists _____________________________
+
+    def test_factory_exists():
+>       from app import create_app
+E       ImportError: cannot import name 'create_app' from 'app' (D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\task-manager-api\app.py)
+
+task-manager-api\tests\test_security.py:16: ImportError
+=========================== short test summary info ===========================
+FAILED task-manager-api/tests/test_security.py::test_user_serializer_never_exposes_password
+FAILED task-manager-api/tests/test_security.py::test_new_password_is_scrypt
+FAILED task-manager-api/tests/test_security.py::test_factory_exists - ImportE...
+3 failed in 1.91s

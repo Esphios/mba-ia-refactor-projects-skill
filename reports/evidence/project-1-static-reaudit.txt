@@ -1,0 +1,8 @@
+[sql_in_routes]
+none
+[known_credentials_in_runtime]
+none
+[debug_enabled]
+none
+[sqlite_connections]
+.\database.py:70:        connection = sqlite3.connect(current_app.config["DATABASE"])

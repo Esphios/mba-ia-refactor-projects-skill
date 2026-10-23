@@ -1,0 +1,34 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_________ test_search_preserves_sqlite_like_wildcards_case_and_owner __________
+
+client = <FlaskClient <Flask 'app'>>
+tokens = {'admin': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}, 'other': {'Authorization'...QOC3-GwKmTfFMjYdJfd51-I8'}, 'owner': {'Authorization': 'Bearer [REDACTED_EPHEMERAL_TEST_TOKEN]'}}
+app = <Flask 'app'>
+
+    def test_search_preserves_sqlite_like_wildcards_case_and_owner(client,tokens,app):
+        with app.app_context():
+            db.session.add_all([
+                Task(title='Alpha Demo',description='R�sum�',user_id=2),
+                Task(title='ALPHA SECOND',description='Other',user_id=2),
+                Task(title='Secret Alpha',description='Hidden',user_id=3),
+            ])
+            db.session.commit()
+        owner=tokens['owner']
+        def titles(query,headers=owner):
+            response=client.get('/tasks/search',query_string={'q':query},headers=headers)
+            assert response.status_code==200
+            return {row['title'] for row in response.json}
+>       assert titles('%')=={'Original task','Alpha Demo','ALPHA SECOND'}
+E       AssertionError: assert set() == {'ALPHA SECON...riginal task'}
+E         
+E         Extra items in the right set:
+E         'Original task'
+E         'Alpha Demo'
+E         'ALPHA SECOND'
+E         Use -v to get more diff
+
+task-manager-api\tests\test_contracts.py:253: AssertionError
+=========================== short test summary info ===========================
+FAILED task-manager-api/tests/test_contracts.py::test_search_preserves_sqlite_like_wildcards_case_and_owner
+1 failed, 63 deselected in 1.51s

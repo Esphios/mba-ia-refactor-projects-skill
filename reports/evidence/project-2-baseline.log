@@ -1,0 +1,10 @@
+BASELINE: all 3 original method/path pairs; paid/denied/missing/course absent/report/delete; unsafe side effects characterized; no external charges
+✔ original three HTTP contracts on a disposable in-memory database (222.591ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 711.2292

@@ -1,0 +1,55 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test test/*.test.js
+
+✔ external configuration validates required signing secret, seed credentials, TTL and port (2.3767ms)
+✔ salted password storage rejects incorrect password and malformed legacy values (258.8074ms)
+✔ all checkout boundaries, success shapes, identity proof, refusal and safe logs (633.6217ms)
+✔ login, authorization, forged/expired tokens and current role and active state (454.5744ms)
+✖ self/admin lifecycle deletes unreferenced users and deactivates referenced users preserving financial history (589.422ms)
+✔ each write failure rolls back the entire checkout, and concurrent operations stay isolated (1487.5884ms)
+✔ database failures in lookup/report/delete return 500 without leaking SQL or claiming success (224.8769ms)
+QUERY_COUNT: 1 enrollment=2; 20 enrollments=2; includes current-user authentication
+✔ report constant query count, exact response shape, empty courses and paid/denied aggregation (1441.605ms)
+✔ readiness fails cleanly for an existing legacy schema rather than reseeding or dropping data (21.022ms)
+✔ controlled legacy migration preserves records and finances, disables ambiguous credentials, and explicit reset enables login (154.6852ms)
+✔ startup against an existing current database never reseeds or overwrites rows (171.0048ms)
+BASELINE: all 3 original method/path pairs; paid/denied/missing/course absent/report/delete; unsafe side effects characterized; no external charges
+✔ original three HTTP contracts on a disposable in-memory database (272.381ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6067.9122
+
+✖ failing tests:
+
+test at test\application.test.js:68:1
+✖ self/admin lifecycle deletes unreferenced users and deactivates referenced users preserving financial history (589.422ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      data: {
+        action: 'deactivated',
+        id: 2,
+  +     msg: 'Usuário desativado; histórico financeiro preservado'
+  -     msg: 'UsuÃ¡rio desativado; histÃ³rico financeiro preservado'
+      },
+      status: 200
+    }
+  
+      at TestContext.<anonymous> (D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\ecommerce-api-legacy\test\application.test.js:75:119)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 200, data: { msg: 'Usuário desativado; histórico financeiro preservado', id: 2, action: 'deactivated' } },
+    expected: { status: 200, data: { msg: 'UsuÃ¡rio desativado; histÃ³rico financeiro preservado', id: 2, action: 'deactivated' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

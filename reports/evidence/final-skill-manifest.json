@@ -1,0 +1,38 @@
+{
+  "code-smells-project": {
+    "package_sha256": "1848a52ef70992701552e275e4b3d998d83e94810a3c2e6cae05317e41d3bb57",
+    "files": {
+      "references/anti-patterns.md": "495f1f16fc7051c958cb5aa8360ef777e43e9d6ec25247b31427fa21b5c98924",
+      "references/audit-report-template.md": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+      "references/mvc-guidelines.md": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+      "references/project-analysis.md": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+      "references/refactoring-playbook.md": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+      "references/validation.md": "53cdeefd5b0630582acc891616aa09ce3284249eb0948759e608e588c2696238",
+      "SKILL.md": "0b17f6fc6ae3c12100455a45c9824be0552b5dec984f9fc33578a23952bfb115"
+    }
+  },
+  "ecommerce-api-legacy": {
+    "package_sha256": "1848a52ef70992701552e275e4b3d998d83e94810a3c2e6cae05317e41d3bb57",
+    "files": {
+      "references/anti-patterns.md": "495f1f16fc7051c958cb5aa8360ef777e43e9d6ec25247b31427fa21b5c98924",
+      "references/audit-report-template.md": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+      "references/mvc-guidelines.md": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+      "references/project-analysis.md": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+      "references/refactoring-playbook.md": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+      "references/validation.md": "53cdeefd5b0630582acc891616aa09ce3284249eb0948759e608e588c2696238",
+      "SKILL.md": "0b17f6fc6ae3c12100455a45c9824be0552b5dec984f9fc33578a23952bfb115"
+    }
+  },
+  "task-manager-api": {
+    "package_sha256": "1848a52ef70992701552e275e4b3d998d83e94810a3c2e6cae05317e41d3bb57",
+    "files": {
+      "references/anti-patterns.md": "495f1f16fc7051c958cb5aa8360ef777e43e9d6ec25247b31427fa21b5c98924",
+      "references/audit-report-template.md": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+      "references/mvc-guidelines.md": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+      "references/project-analysis.md": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+      "references/refactoring-playbook.md": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+      "references/validation.md": "53cdeefd5b0630582acc891616aa09ce3284249eb0948759e608e588c2696238",
+      "SKILL.md": "0b17f6fc6ae3c12100455a45c9824be0552b5dec984f9fc33578a23952bfb115"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+✔ external configuration validates required signing secret, seed credentials, TTL and port (2.0111ms)
+✔ salted password storage rejects incorrect password and malformed legacy values (230.3035ms)
+✔ all checkout boundaries, success shapes, identity proof, refusal and safe logs (589.7189ms)
+✔ login, authorization, forged/expired tokens and current role and active state (335.9973ms)
+✔ self/admin lifecycle deletes unreferenced users and deactivates referenced users preserving financial history (470.1793ms)
+✔ each write failure rolls back the entire checkout, and concurrent operations stay isolated (1148.0532ms)
+✔ database failures in lookup/report/delete return 500 without leaking SQL or claiming success (170.2666ms)
+QUERY_COUNT: 1 enrollment=2; 20 enrollments=2; includes current-user authentication
+✔ report constant query count, exact response shape, empty courses and paid/denied aggregation (1175.7072ms)
+✔ readiness fails cleanly for an existing legacy schema rather than reseeding or dropping data (22.3666ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4957.4211

@@ -1,0 +1,8 @@
+v24.12.0
+11.19.1
+desafio-arquitetura-ia-boilerplate@1.0.0 D:\Docs\Workspace\mba-ia-workspace\desafios\refactor-projects-skill\ecommerce-api-legacy
+├── express@4.22.3
+└── sqlite3@6.0.1
+
+SYNTAX: all production/test JavaScript files pass node --check
+BOUNDARIES: routes contain no SQL
