@@ -220,3 +220,17 @@ implementador durante a auditoria aparecem explicitamente nos manifests; não
 houve escrita do avaliador nas fontes. [Registro da revisão e decisões](evidence/integration-review.md).
 Aprovação parcial/dependências também foi executada no caso controlado vinculado
 acima. Auditoria estática não substitui a reprodução funcional em checkout limpo.
+
+## Conferência de entrega — 23/10/2026
+
+O relatório entregue do Task Manager foi alinhado à rubrica: P3-08 passa de HIGH
+para CRITICAL, com total 2/2/3/2 (nove achados). A amostra independente e seus
+totais originais acima são preservados como resultados observados, sem edição
+retroativa. README, auditoria e validação usam a classificação revisada.
+
+A evidência do gate é distinta da autorização das transformações: nas três
+reanálises dos originais, a recusa encerrou as execuções sem escrita; uma fixture
+separada comprova retomada e persistência antes da correção. As transformações
+iniciais dos projetos 2/3 usaram dispensa expressa de pausas, não confirmação
+específica após cada relatório. O README explicita essa diferença. Não se afirma
+que a revisão de hoje criou aprovação retroativa ou repetiu as transformações.

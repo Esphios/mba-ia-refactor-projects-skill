@@ -73,7 +73,7 @@ SELECTs medidos antes/depois da adição de 20 usuários/categorias/tarefas (1 p
 | P3-01 CRITICAL | Corrigido: whitelist User.to_dict sem password; shapes e varredura de respostas em tests/test_contracts.py |
 | P3-06 HIGH | Corrigido: scrypt em models/user.py e migração MD5 condicionada em controllers/user_controller.py; testes legacy/cutoff/inactive |
 | P3-07 HIGH | Corrigido: auth.py valida assinatura/expiração, carrega conta ativa atual e aplica owner/admin; configuração SECRET_KEY externa; matriz de negações e sucessos |
-| P3-08 HIGH | Corrigido: NotificationService depende de ambiente, fica off por padrão e aceita transporte injetado; testes sem SMTP real |
+| P3-08 CRITICAL | Corrigido: NotificationService depende de ambiente, fica off por padrão e aceita transporte injetado; testes sem SMTP real |
 | P3-02 MEDIUM | Corrigido: models/repository.py centraliza eager loading; contagens 1/21 constantes comprovadas |
 | P3-03 MEDIUM | Corrigido: utils/validation.py, serialization.py e dates.py compartilhados; limites e shapes preservados |
 | P3-09 MEDIUM | Corrigido: Session.get, selects ORM e utc_naive; testes warnings-as-errors e banco legado |

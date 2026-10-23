@@ -9,16 +9,18 @@ Autorização excepcional do usuário: **“ignore as aprovações por enquanto.
 | ID | Severidade / catálogo | Evidência original (linhas) | Impacto / correção / verificação |
 |---|---|---|---|
 | P3-01 | CRITICAL AP-02 | models/user.py:15–25 retorna password em to_dict, routes/user_routes.py usa o resultado em GET/POST/PUT/login | Hash exposto facilita ataque offline; whitelist compartilhada, testes em todas respostas de usuário |
+| P3-08 | CRITICAL AP-02 | services/notification_service.py:8–11 SMTP/senha fixos | Credenciais hardcoded são CRITICAL segundo a rubrica do desafio; configuração externa e transporte injetável sem envio em testes |
 | P3-06 | HIGH AP-04 | models/user.py:27–32 MD5 sem salt | Quebra rápida; scrypt para novas senhas e upgrade transacional após login legado válido com cutoff configurável |
 | P3-07 | HIGH AP-05/AP-04 | routes/user_routes.py:1–230 sem autorização, token fake-jwt-token; app.py:14 segredo fixo | Escalada e alteração de terceiros; token assinado expirável, identidade atual ativa e matriz owner/admin |
-| P3-08 | HIGH AP-02 | services/notification_service.py:8–11 SMTP/senha fixos | Credencial fixa; configuração externa e transporte injetável sem envio em testes |
 | P3-02 | MEDIUM AP-08 | routes/task_routes.py:15–57 consulta usuário/categoria por tarefa; routes/report_routes.py:55–58,161–163 consultas por usuário/categoria | Crescimento N+1; joined/selectin loading e contagem comparativa 1/20 |
 | P3-03 | MEDIUM AP-09 | routes/task_routes.py:17–59,69–82,96–139,165–212; utils/helpers.py:62–116 | Validação e overdue/serialização duplicados; funções únicas com preservação dos campos por contexto |
 | P3-09 | MEDIUM AP-10 | routes/task_routes.py:42,51,67 e models/task.py:17–18,66 | Query.get legacy em SQLAlchemy 2; utcnow deprecated Python 3.12. Fontes oficiais https://docs.sqlalchemy.org/en/20/orm/queryguide/query.html#sqlalchemy.orm.Query.get e https://docs.python.org/3/library/datetime.html#datetime.datetime.utcnow ; Session.get e UTC normalizado para persistência ingênua legada |
 | P3-04 | LOW AP-12 | utils/helpers.py:3–7; routes/task_routes.py:7 | imports os/json/sys/math/hashlib/time sem referências; remover e validar boot |
 | P3-05 | LOW AP-11 | routes/report_routes.py:24–28,129; routes/task_routes.py:104,113 | Prioridades sem nomes compartilhados; constantes 1–5/default 3 mantendo política |
 
-Resumo: 1 CRITICAL, 3 HIGH, 3 MEDIUM, 2 LOW. Nenhuma suspeita contada.
+Resumo: 2 CRITICAL, 2 HIGH, 3 MEDIUM, 2 LOW. Nenhuma suspeita contada.
+
+Conferência editorial de 23/10/2026: P3-08 foi reclassificado de HIGH para CRITICAL para cumprir a rubrica explícita de credenciais hardcoded. A tabela foi reordenada e o resumo recalculado; evidências, escopo, autorização original e correções permanecem os mesmos. Este registro não apresenta a reclassificação como saída bruta original.
 
 ## Transformações e diferenças de contrato
 

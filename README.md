@@ -519,6 +519,13 @@ A skill mantém aprovação humana entre fases 2 e 3. Nesta entrega o usuário
 substituiu expressamente as pausas restantes por “ignore as aprovações por
 enquanto. continue até o fim.” Essa exceção de sessão é registrada nas auditorias
 e não altera o procedimento reutilizável nem conta como teste de aprovação.
+Nas reexecuções dos três projetos originais, a skill apresentou a auditoria e
+parou após a recusa, sem alterar as fontes; a retomada com aprovação foi testada
+separadamente em fixture controlada. A transformação inicial dos projetos 2/3
+usou a dispensa e não constitui evidência de confirmação específica após cada
+relatório. Os registros são preservados, sem alegar aprovação retroativa. Veja
+[auditorias independentes](reports/evidence/final-original-audits.md) e
+[caso de retomada](reports/evidence/skill-behavior-evaluation.md#extension-resumed-narrow-approval-and-report-before-edit).
 
 ## Resultados
 
@@ -529,7 +536,11 @@ refatoração. Os exemplos e mínimos do enunciado acima não são resultados me
 |---|---:|---:|---:|---:|---:|---|
 | Flask e-commerce | 5 | 4 | 4 | 2 | 15 | [auditoria](reports/audit-project-1.md), [validação](reports/validation-project-1.md) |
 | Express LMS | 2 | 4 | 1 | 2 | 9 | [auditoria](reports/audit-project-2.md), [validação](reports/validation-project-2.md) |
-| Flask Task Manager | 1 | 3 | 3 | 2 | 9 | [auditoria](reports/audit-project-3.md), [validação](reports/validation-project-3.md) |
+| Flask Task Manager | 2 | 2 | 3 | 2 | 9 | [auditoria](reports/audit-project-3.md), [validação](reports/validation-project-3.md) |
+
+P3-08 foi reclassificado de HIGH para CRITICAL na revisão de 23/10/2026,
+conforme a rubrica para credenciais hardcoded; o total de nove achados e as
+evidências originais foram preservados.
 
 Comparação estrutural, excluindo dependências, bancos e caches:
 
@@ -579,7 +590,8 @@ Checklist individual da solução (o checklist anterior é o modelo do enunciado
 | Findings ordenados e mínimo de cinco | [x] 15 | [x] 9 | [x] 9 |
 | Pelo menos um CRITICAL/HIGH | [x] | [x] | [x] |
 | Deprecações avaliadas por versão | [x] sem caso confirmado | [x] sem API confirmada | [x] Query.get/utcnow |
-| Gate de confirmação da skill | [x] aprovação específica | [x] waiver + recusa avaliada | [x] waiver + recusa avaliada |
+| Gate nas reexecuções dos originais | [x] parou sem escrita | [x] parou sem escrita | [x] parou sem escrita |
+| Autorização da transformação inicial | aprovação específica | dispensa explícita de pausas | dispensa explícita de pausas |
 | Diretórios e responsabilidades MVC | [x] | [x] | [x] |
 | Configuração externa | [x] | [x] | [x] |
 | Models abstraem persistência | [x] | [x] | [x] |
