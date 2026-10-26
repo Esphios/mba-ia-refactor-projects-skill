@@ -1,0 +1,20 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_framework_error_shapes_and_ignored_create_fields ____________
+
+app = <Flask 'app'>
+
+    def test_framework_error_shapes_and_ignored_create_fields(app):
+        client = app.test_client()
+>       assert client.get('/missing').content_type.startswith('text/html')
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x0000023CE4A75170>('text/html')
+E        +    where <built-in method startswith of str object at 0x0000023CE4A75170> = 'application/json'.startswith
+E        +      where 'application/json' = <WrapperTestResponse streamed [404 NOT FOUND]>.content_type
+E        +        where <WrapperTestResponse streamed [404 NOT FOUND]> = get('/missing')
+E        +          where get = <FlaskClient <Flask 'app'>>.get
+
+task-manager-api\tests\skill_run\test_approved.py:480: AssertionError
+=========================== short test summary info ===========================
+FAILED task-manager-api\tests\skill_run\test_approved.py::test_framework_error_shapes_and_ignored_create_fields
+1 failed, 24 deselected in 1.66s

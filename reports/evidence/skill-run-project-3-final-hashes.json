@@ -1,0 +1,40 @@
+{
+  "source_count": 24,
+  "sources": {
+    "task-manager-api/app.py": "7b7be50d06f0e4df7a08f641bd7b2208659210335bfca836fd0d67038150d880",
+    "task-manager-api/controllers/__init__.py": "0818a0b4a01a2195a0990c7ca0a22d4dacdf1f6ef0d4e882d0a587763487540a",
+    "task-manager-api/controllers/report_controller.py": "5ef27cba561011b3620cfaf501aea40bd85f2a24fa35763329fe0a40e005f596",
+    "task-manager-api/controllers/task_controller.py": "cafb7e76df792c9c648e8e90387f956bcfa3abcfd676585575b87d89300103f3",
+    "task-manager-api/controllers/user_controller.py": "7b931089c98892f261d5e917d3111ec1062457e9470820d20d68e6db0860005f",
+    "task-manager-api/database.py": "5f9ab7b94bdecc149ae3bb18ba50d60b07462c4c41a3a18809adfd43f089a89c",
+    "task-manager-api/models/__init__.py": "89d61649a4486ec71bbf6292b34a39bf204490005a0672d9bd6329ecba2cb1ed",
+    "task-manager-api/models/category.py": "ba5e0a193f6dfbafd160d0836652d0d1e4113f04ef9e7418e2bbc348bafbcd58",
+    "task-manager-api/models/store.py": "4e6aa0b7027c53b02f2dbd1c42817cb5443348002459feeefd3fab2c0a99bcaf",
+    "task-manager-api/models/task.py": "fe4dcff77c3d9215edf0e8c594019aea355c34703bab62b6d59e4430c8629d9a",
+    "task-manager-api/models/user.py": "47def372d89b5ad88aa2227c2536476e1fae19005e9465baa173d3d00e1df63c",
+    "task-manager-api/routes/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "task-manager-api/routes/report_routes.py": "188b0362434cad9eca01d6e1647e64873132358caa265a7e385f7a5028efe742",
+    "task-manager-api/routes/task_routes.py": "2464faa4085dc726e470fef2468ec3a92d22531d0fcedcf97c55a4a434cbf694",
+    "task-manager-api/routes/user_routes.py": "6300fc51961fc4478d02d058ffc7600b089bdbd281610e162c421e819e8f2d0d",
+    "task-manager-api/seed.py": "8bcf07aa3dc70be2f8022d36db5f4338d707e37256cbba2b75bff34f9c547375",
+    "task-manager-api/services/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "task-manager-api/services/notification_service.py": "6a73d161377dd13abf6e85b88a0e247256275dd823da0d90644ac3a5bb30aabd",
+    "task-manager-api/services/security.py": "635a3576e106ee038d94b9b1aa39a83a6e32942ec034fd0fbdb900829deee787",
+    "task-manager-api/utils/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "task-manager-api/utils/domain.py": "1113d5808c40d1e6c947c150cf5694311f6bbdbb955e5514373f9ba948fecfea",
+    "task-manager-api/utils/errors.py": "a6345c924d34e51bba1415039d92f07508fb9cb8c604431f650ee1ce093d4836",
+    "task-manager-api/utils/helpers.py": "bea4e318dc88b8811706fdb8fd995fe7da7a2116681554281d4fd39748404824",
+    "task-manager-api/utils/validation.py": "ffdcf1c61e0a016eb6d68b0a04860f34458ba58e1f38f5d901ccc9576e869af2"
+  },
+  "skill_package": {
+    "references/anti-patterns.md": "3af06747b49de41ff5006214423f10d3cd9f7e2ae3d42e8d7b1de31730c8fe69",
+    "references/audit-report-template.md": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+    "references/delivery.md": "f0be1746fb11f43c7d03e03548f4874c00d272d7be78e865d5505200d15634e1",
+    "references/mvc-guidelines.md": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+    "references/project-analysis.md": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+    "references/refactoring-playbook.md": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+    "references/regression-checks.md": "704e68df3b81bbe24df453988bec5f40221af42b245ce649cf9016be612b7ecf",
+    "references/validation.md": "82e8d7ede41328401633fd8cb8b1af8f16aacb8c1ddd67f8f5338e500f48342e",
+    "SKILL.md": "5113639e569ae7cb391ccd924971c31a9b06f9f3994d3a9724b4f9e4e8bdb937"
+  }
+}

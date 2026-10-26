@@ -1,0 +1,23 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________ test_legacy_null_status_is_overdue_in_stats_and_summary ___________
+
+app = <Flask 'app'>
+
+    def test_legacy_null_status_is_overdue_in_stats_and_summary(app):
+        from datetime import datetime
+        from models.task import Task
+        with app.app_context():
+            task=Task(title='Legacy null', status='pending', due_date=datetime(2000,1,1), user_id=1)
+            db.session.add(task); db.session.commit()
+            db.session.execute(__import__('sqlalchemy').text('UPDATE tasks SET status=NULL WHERE id=:id'),{'id':task.id})
+            db.session.commit(); task_id=task.id
+        client=app.test_client(); headers=auth(client,'admin')
+        assert client.get(f'/tasks/{task_id}',headers=headers).json['overdue'] is True
+>       assert client.get('/tasks/stats',headers=headers).json['overdue'] == 1
+E       assert 0 == 1
+
+tests\skill_run\test_approved.py:512: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/skill_run/test_approved.py::test_legacy_null_status_is_overdue_in_stats_and_summary
+1 failed, 26 deselected in 1.75s

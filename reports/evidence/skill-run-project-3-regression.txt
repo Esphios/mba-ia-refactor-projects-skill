@@ -1,0 +1,34 @@
+..............QUERY_GROWTH {"small": {"/tasks": 2, "/users": 2, "/categories": 2, "/reports/summary": 9}, "large": {"/tasks": 2, "/users": 2, "/categories": 2, "/reports/summary": 9}}
+......Seed concluído com sucesso!
+  3 usuários
+  4 categorias
+  10 tasks
+..F.
+================================== FAILURES ===================================
+________________ test_legacy_database_opens_without_data_loss _________________
+
+tmp_path = WindowsPath('<TEMP>/pytest-user/pytest-43/test_legacy_database_opens_wit0')
+
+    def test_legacy_database_opens_without_data_loss(tmp_path):
+        import sqlite3
+        import hashlib
+        path = tmp_path / 'legacy.db'
+        connection = sqlite3.connect(path)
+        connection.executescript('''
+            CREATE TABLE users (id INTEGER PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(150) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL, role VARCHAR(50), active BOOLEAN, created_at DATETIME);
+            CREATE TABLE categories (id INTEGER PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(300), color VARCHAR(7), created_at DATETIME);
+            CREATE TABLE tasks (id INTEGER PRIMARY KEY, title VARCHAR(200) NOT NULL, description TEXT, status VARCHAR(50), priority INTEGER,
+                user_id INTEGER REFERENCES users(id), category_id INTEGER REFERENCES categories(id), created_at DATETIME, updated_at DATETIME,
+                due_date DATETIME, tags VARCHAR(500));
+        ''')
+        connection.execute('INSERT INTO users VALUES (23,?,?,?,?,?,?)', ('Legado', 'old@example.com', hashlib.md5(b'1234').hexdigest(), 'admin', True, '2020-01-01 00:00:00'))
+        connection.execute('INSERT INTO categories VALUES (17,?,?,?,?)', ('Legada', None, '#123456', '2020-01-01 00:00:00'))
+>       connection.execute('INSERT INTO tasks VALUES (99,?,?,?,?,?,?,?,?,?,?,?)', ('Tarefa legada', None, 'pending', 3, 23, 17,
+            '2020-01-01 00:00:00', '2020-01-01 00:00:00', '2030-01-01 00:00:00', 'a,b'))
+E       sqlite3.OperationalError: table tasks has 11 columns but 12 values were supplied
+
+task-manager-api\tests\skill_run\test_approved.py:449: OperationalError
+=========================== short test summary info ===========================
+FAILED task-manager-api\tests\skill_run\test_approved.py::test_legacy_database_opens_without_data_loss
+1 failed, 23 passed in 19.28s

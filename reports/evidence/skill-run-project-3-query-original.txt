@@ -1,0 +1,58 @@
+F
+================================== FAILURES ===================================
+________________________ test_query_growth_is_constant ________________________
+
+app = <Flask 'app'>
+record_property = <function record_property.<locals>.append_property at 0x0000020B1D0DAA20>
+
+    def test_query_growth_is_constant(app, record_property):
+        from sqlalchemy import event
+        from models.task import Task
+        from models.category import Category
+        seed_tasks(app)
+        client = app.test_client()
+        admin = auth(client, 'admin')
+        paths = ['/tasks', '/users', '/categories', '/reports/summary']
+        counts = {}
+        with app.app_context():
+            engine = db.engine
+        def measure():
+            output = {}
+            for path in paths:
+                selects = []
+                def observe(connection, cursor, statement, parameters, context, many):
+                    if statement.lstrip().upper().startswith('SELECT'):
+                        selects.append(statement)
+                event.listen(engine, 'before_cursor_execute', observe)
+                try:
+                    response = client.get(path, headers=admin)
+                    assert response.status_code == 200
+                    output[path] = len(selects)
+                finally:
+                    event.remove(engine, 'before_cursor_execute', observe)
+            return output
+        counts['small'] = measure()
+        with app.app_context():
+            for index in range(20):
+                user = User(name=f'User{index}', email=f'u{index}@example.com', password='not-for-login')
+                category = Category(name=f'Category{index}')
+                db.session.add_all([user, category])
+                db.session.flush()
+                db.session.add(Task(title=f'Task{index}', user_id=user.id, category_id=category.id))
+            db.session.commit()
+        counts['large'] = measure()
+>       assert counts['small'] == counts['large'], counts
+E       AssertionError: {'small': {'/tasks': 4, '/users': 5, '/categories': 2, '/reports/summary': 20}, 'large': {'/tasks': 44, '/users': 25, '/categories': 22, '/reports/summary': 40}}
+E       assert {'/tasks': 4,.../summary': 20} == {'/tasks': 44.../summary': 40}
+E         
+E         Differing items:
+E         {'/users': 5} != {'/users': 25}
+E         {'/tasks': 4} != {'/tasks': 44}
+E         {'/categories': 2} != {'/categories': 22}
+E         {'/reports/summary': 20} != {'/reports/summary': 40}
+E         Use -v to get more diff
+
+task-manager-api\tests\skill_run\test_approved.py:344: AssertionError
+=========================== short test summary info ===========================
+FAILED task-manager-api\tests\skill_run\test_approved.py::test_query_growth_is_constant
+1 failed, 24 deselected in 1.71s

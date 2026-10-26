@@ -1,0 +1,14 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "<REPO>\\task-manager-api\\.venv\\skill-run-20261023\\Scripts\\python.exe",
+  "packages": {
+    "Flask": "3.0.0",
+    "Flask-SQLAlchemy": "3.1.1",
+    "Flask-Cors": "4.0.0",
+    "SQLAlchemy": "2.1.6",
+    "Werkzeug": "3.1.9",
+    "itsdangerous": "2.2.0",
+    "pytest": "9.1.1"
+  },
+  "application_imported": false
+}

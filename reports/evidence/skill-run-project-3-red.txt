@@ -1,0 +1,78 @@
+FFFFF                                                                    [100%]
+================================== FAILURES ===================================
+___________________ test_factory_has_no_import_time_schema ____________________
+
+    def test_factory_has_no_import_time_schema():
+>       assert hasattr(application, 'create_app')
+E       AssertionError: assert False
+E        +  where False = hasattr(application, 'create_app')
+
+task-manager-api\tests\skill_run\test_approved.py:46: AssertionError
+_______________________ test_password_response_and_hash _______________________
+
+app = <Flask 'app'>
+
+    def test_password_response_and_hash(app):
+        client = app.test_client()
+        response = client.post('/login', json={'email': 'owner@example.com', 'password': 'p�ss'})
+        assert response.status_code == 200
+>       assert 'password' not in response.json['user']
+E       AssertionError: assert 'password' not in {'active': True, 'created_at': '2026-10-23 14:18:21.001368', 'email': 'owner@example.com', 'id': 1, ...}
+
+task-manager-api\tests\skill_run\test_approved.py:53: AssertionError
+______________________ test_authentication_and_ownership ______________________
+
+app = <Flask 'app'>
+
+    def test_authentication_and_ownership(app):
+        client = app.test_client()
+>       assert client.get('/tasks').status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/tasks')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+task-manager-api\tests\skill_run\test_approved.py:60: AssertionError
+_____________________ test_validation_type_errors_are_400 _____________________
+
+app = <Flask 'app'>
+
+    def test_validation_type_errors_are_400(app):
+        client = app.test_client()
+        headers = auth(client)
+>       assert client.post('/tasks', json={'title': 'valid', 'priority': True}, headers=headers).status_code == 400
+E       AssertionError: assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +    where <WrapperTestResponse streamed [201 CREATED]> = post('/tasks', json={'title': 'valid', 'priority': True}, headers={'Authorization': 'Bearer fake-jwt-token-1'})
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+task-manager-api\tests\skill_run\test_approved.py:68: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Task criada: 1 - valid
+__________________ test_public_registration_cannot_escalate ___________________
+
+app = <Flask 'app'>
+
+    def test_public_registration_cannot_escalate(app):
+        client = app.test_client()
+        response = client.post('/users', json={'name': 'bad', 'email': 'bad@example.com', 'password': '1234', 'role': 'admin'})
+>       assert response.status_code == 403
+E       assert 201 == 403
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+task-manager-api\tests\skill_run\test_approved.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Usu�rio criado: 5 - bad
+============================== warnings summary ===============================
+task-manager-api/tests/skill_run/test_approved.py: 19 warnings
+  <REPO>\task-manager-api\.venv\skill-run-20261023\Lib\site-packages\sqlalchemy\sql\schema.py:4296: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED task-manager-api/tests/skill_run/test_approved.py::test_factory_has_no_import_time_schema
+FAILED task-manager-api/tests/skill_run/test_approved.py::test_password_response_and_hash
+FAILED task-manager-api/tests/skill_run/test_approved.py::test_authentication_and_ownership
+FAILED task-manager-api/tests/skill_run/test_approved.py::test_validation_type_errors_are_400
+FAILED task-manager-api/tests/skill_run/test_approved.py::test_public_registration_cannot_escalate
+5 failed, 19 warnings in 2.59s

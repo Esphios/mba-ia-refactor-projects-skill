@@ -1,0 +1,474 @@
+{
+  "contracts": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "body": {
+        "message": "Task Manager API",
+        "version": "1.0"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "timestamp": "<dynamic>"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "status": 200,
+      "body": {
+        "message": "Login realizado com sucesso",
+        "token": "<dynamic>",
+        "user": {
+          "active": true,
+          "created_at": "<dynamic>",
+          "email": "admin@example.com",
+          "id": 1,
+          "name": "admin",
+          "role": "admin"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "status": 200,
+      "body": [
+        {
+          "active": true,
+          "created_at": "<dynamic>",
+          "email": "admin@example.com",
+          "id": 1,
+          "name": "admin",
+          "role": "admin",
+          "task_count": 0
+        },
+        {
+          "active": true,
+          "created_at": "<dynamic>",
+          "email": "owner@example.com",
+          "id": 2,
+          "name": "owner",
+          "role": "user",
+          "task_count": 1
+        },
+        {
+          "active": true,
+          "created_at": "<dynamic>",
+          "email": "other@example.com",
+          "id": 3,
+          "name": "other",
+          "role": "user",
+          "task_count": 0
+        },
+        {
+          "active": true,
+          "created_at": "<dynamic>",
+          "email": "manager@example.com",
+          "id": 4,
+          "name": "manager",
+          "role": "manager",
+          "task_count": 0
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/2",
+      "status": 200,
+      "body": {
+        "active": true,
+        "created_at": "<dynamic>",
+        "email": "owner@example.com",
+        "id": 2,
+        "name": "owner",
+        "role": "user",
+        "tasks": [
+          {
+            "category_id": 1,
+            "created_at": "<dynamic>",
+            "description": "Descrição",
+            "due_date": "2000-01-01 00:00:00",
+            "id": 1,
+            "priority": 3,
+            "status": "pending",
+            "tags": [
+              "a",
+              "b"
+            ],
+            "title": "Árvore 100%_ Unicode",
+            "updated_at": "<dynamic>",
+            "user_id": 2
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/users",
+      "status": 201,
+      "body": {
+        "active": true,
+        "created_at": "<dynamic>",
+        "email": "new@example.com",
+        "id": 5,
+        "name": "Novo",
+        "role": "user"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/users/5",
+      "status": 200,
+      "body": {
+        "active": true,
+        "created_at": "<dynamic>",
+        "email": "new@example.com",
+        "id": 5,
+        "name": "Atualizado",
+        "role": "user"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/users/2/tasks",
+      "status": 200,
+      "body": [
+        {
+          "created_at": "<dynamic>",
+          "description": "Descrição",
+          "due_date": "2000-01-01 00:00:00",
+          "id": 1,
+          "overdue": true,
+          "priority": 3,
+          "status": "pending",
+          "title": "Árvore 100%_ Unicode"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tasks",
+      "status": 200,
+      "body": [
+        {
+          "category_id": 1,
+          "category_name": "Backend",
+          "created_at": "<dynamic>",
+          "description": "Descrição",
+          "due_date": "2000-01-01 00:00:00",
+          "id": 1,
+          "overdue": true,
+          "priority": 3,
+          "status": "pending",
+          "tags": [
+            "a",
+            "b"
+          ],
+          "title": "Árvore 100%_ Unicode",
+          "updated_at": "<dynamic>",
+          "user_id": 2,
+          "user_name": "owner"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/1",
+      "status": 200,
+      "body": {
+        "category_id": 1,
+        "created_at": "<dynamic>",
+        "description": "Descrição",
+        "due_date": "2000-01-01 00:00:00",
+        "id": 1,
+        "overdue": true,
+        "priority": 3,
+        "status": "pending",
+        "tags": [
+          "a",
+          "b"
+        ],
+        "title": "Árvore 100%_ Unicode",
+        "updated_at": "<dynamic>",
+        "user_id": 2
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tasks",
+      "status": 201,
+      "body": {
+        "category_id": 1,
+        "created_at": "<dynamic>",
+        "description": "",
+        "due_date": "2030-01-02 00:00:00",
+        "id": 2,
+        "priority": 2,
+        "status": "pending",
+        "tags": [
+          "um",
+          "dois"
+        ],
+        "title": "Outra tarefa",
+        "updated_at": "<dynamic>",
+        "user_id": 2
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/tasks/2",
+      "status": 200,
+      "body": {
+        "category_id": 1,
+        "created_at": "<dynamic>",
+        "description": "",
+        "due_date": null,
+        "id": 2,
+        "priority": 2,
+        "status": "done",
+        "tags": [
+          "um",
+          "dois"
+        ],
+        "title": "Outra tarefa",
+        "updated_at": "<dynamic>",
+        "user_id": 2
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/search?q=%25_&user_id=2",
+      "status": 200,
+      "body": [
+        {
+          "category_id": 1,
+          "created_at": "<dynamic>",
+          "description": "Descrição",
+          "due_date": "2000-01-01 00:00:00",
+          "id": 1,
+          "priority": 3,
+          "status": "pending",
+          "tags": [
+            "a",
+            "b"
+          ],
+          "title": "Árvore 100%_ Unicode",
+          "updated_at": "<dynamic>",
+          "user_id": 2
+        },
+        {
+          "category_id": 1,
+          "created_at": "<dynamic>",
+          "description": "",
+          "due_date": null,
+          "id": 2,
+          "priority": 2,
+          "status": "done",
+          "tags": [
+            "um",
+            "dois"
+          ],
+          "title": "Outra tarefa",
+          "updated_at": "<dynamic>",
+          "user_id": 2
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/stats",
+      "status": 200,
+      "body": {
+        "cancelled": 0,
+        "completion_rate": 50.0,
+        "done": 1,
+        "in_progress": 0,
+        "overdue": 1,
+        "pending": 1,
+        "total": 2
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/reports/summary",
+      "status": 200,
+      "body": {
+        "generated_at": "<dynamic>",
+        "overdue": {
+          "count": 1,
+          "tasks": [
+            {
+              "days_overdue": 9792,
+              "due_date": "2000-01-01 00:00:00",
+              "id": 1,
+              "title": "Árvore 100%_ Unicode"
+            }
+          ]
+        },
+        "overview": {
+          "total_categories": 1,
+          "total_tasks": 2,
+          "total_users": 5
+        },
+        "recent_activity": {
+          "tasks_completed_last_7_days": 1,
+          "tasks_created_last_7_days": 1
+        },
+        "tasks_by_priority": {
+          "critical": 0,
+          "high": 1,
+          "low": 0,
+          "medium": 1,
+          "minimal": 0
+        },
+        "tasks_by_status": {
+          "cancelled": 0,
+          "done": 1,
+          "in_progress": 0,
+          "pending": 1
+        },
+        "user_productivity": [
+          {
+            "completed_tasks": 0,
+            "completion_rate": 0,
+            "total_tasks": 0,
+            "user_id": 1,
+            "user_name": "admin"
+          },
+          {
+            "completed_tasks": 1,
+            "completion_rate": 50.0,
+            "total_tasks": 2,
+            "user_id": 2,
+            "user_name": "owner"
+          },
+          {
+            "completed_tasks": 0,
+            "completion_rate": 0,
+            "total_tasks": 0,
+            "user_id": 3,
+            "user_name": "other"
+          },
+          {
+            "completed_tasks": 0,
+            "completion_rate": 0,
+            "total_tasks": 0,
+            "user_id": 4,
+            "user_name": "manager"
+          },
+          {
+            "completed_tasks": 0,
+            "completion_rate": 0,
+            "total_tasks": 0,
+            "user_id": 5,
+            "user_name": "Atualizado"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/reports/user/2",
+      "status": 200,
+      "body": {
+        "statistics": {
+          "cancelled": 0,
+          "completion_rate": 50.0,
+          "done": 1,
+          "high_priority": 1,
+          "in_progress": 0,
+          "overdue": 1,
+          "pending": 1,
+          "total_tasks": 2
+        },
+        "user": {
+          "email": "owner@example.com",
+          "id": 2,
+          "name": "owner"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/categories",
+      "status": 200,
+      "body": [
+        {
+          "color": "#3498db",
+          "created_at": "<dynamic>",
+          "description": null,
+          "id": 1,
+          "name": "Backend",
+          "task_count": 2
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/categories",
+      "status": 201,
+      "body": {
+        "color": "#000000",
+        "created_at": "<dynamic>",
+        "description": "",
+        "id": 2,
+        "name": "Nova"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/categories/2",
+      "status": 200,
+      "body": {
+        "color": "#abcdef",
+        "created_at": "<dynamic>",
+        "description": "",
+        "id": 2,
+        "name": "Nova"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/categories/2",
+      "status": 200,
+      "body": {
+        "message": "Categoria deletada"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tasks/2",
+      "status": 200,
+      "body": {
+        "message": "Task deletada com sucesso"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/5",
+      "status": 200,
+      "body": {
+        "message": "Usuário deletado com sucesso"
+      }
+    }
+  ],
+  "count": 22,
+  "pid": 21004,
+  "port": 63920,
+  "readiness_timeout_seconds": 30,
+  "command": [
+    "<REPO>\\task-manager-api\\.venv\\skill-run-20261023\\Scripts\\python.exe",
+    "tests/run_http_matrix.py",
+    "--worker"
+  ],
+  "comparison": "original baseline",
+  "cleanup": "own child exited; temporary directory removed on return",
+  "server_log": "127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET / HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /health HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"POST /login HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /users HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /users/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"POST /users HTTP/1.1\" 201 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"PUT /users/5 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /users/2/tasks HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /tasks HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /tasks/1 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"POST /tasks HTTP/1.1\" 201 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"PUT /tasks/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /tasks/search?q=%25_&user_id=2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /tasks/stats HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /reports/summary HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /reports/user/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"GET /categories HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"POST /categories HTTP/1.1\" 201 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"PUT /categories/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"DELETE /categories/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"DELETE /tasks/2 HTTP/1.1\" 200 -\n127.0.0.1 - - [23/Oct/2026 11:19:26] \"DELETE /users/5 HTTP/1.1\" 200 -\n"
+}

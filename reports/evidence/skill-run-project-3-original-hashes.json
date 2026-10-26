@@ -1,0 +1,62 @@
+[
+  {
+    "Path": "<REPO>\\task-manager-api\\app.py",
+    "Hash": "A28AC584FB04B9A74D193E812DFED9E8178A4546F3AFD8755D4FDC72A7E797FA"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\database.py",
+    "Hash": "5F9AB7B94BDECC149AE3BB18BA50D60B07462C4C41A3A18809ADFD43F089A89C"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\seed.py",
+    "Hash": "57986FDF9DFA0B47EDB40F0919F0F6D4C1AB5C4BC2FB72689176262CB34881C6"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\models\\__init__.py",
+    "Hash": "89D61649A4486EC71BBF6292B34A39BF204490005A0672D9BD6329ECBA2CB1ED"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\models\\category.py",
+    "Hash": "8DF4C96DFCB1B3AA6BE86FFAE32168AEEC431F58927622490E744AF449B0D1F4"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\models\\task.py",
+    "Hash": "EB120E934F34488DD1CC1FD40A41E31D4FB2C0A0E4BA8D9E4C70C7D90F9C0A04"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\models\\user.py",
+    "Hash": "E689D4337DAD4C4327A58327718687A46EF49C0EE934FAFB109DAB51CE4667EC"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\routes\\__init__.py",
+    "Hash": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\routes\\report_routes.py",
+    "Hash": "2A5F9FA1A15A3E1520E4E8ED722F83EF233A261A40C15B0F057C4AE3679BD341"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\routes\\task_routes.py",
+    "Hash": "3E7AE78B93F29BAEF102D1FF5A74D3DABE39C827C6A6A33C1DFF2098C46CF89B"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\routes\\user_routes.py",
+    "Hash": "FFB128DB5F89A8276CF1561D6D529D377127C6A331C7BF263361126EED46A20C"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\services\\__init__.py",
+    "Hash": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\services\\notification_service.py",
+    "Hash": "1C5F6B74CD562EB5A6E8C06B66C836BA7692ADE1AA15C04D44FFA331FDEA34E8"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\utils\\__init__.py",
+    "Hash": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+  },
+  {
+    "Path": "<REPO>\\task-manager-api\\utils\\helpers.py",
+    "Hash": "62F0E0A67F873022741BDE69888AC66DA0EC9397010C254CE83446D6D52F1810"
+  }
+]

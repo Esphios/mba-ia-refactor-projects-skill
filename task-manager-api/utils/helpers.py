@@ -1,10 +1,7 @@
 from datetime import datetime
+from utils.domain import (utcnow, STATUSES, ROLES, MAX_TITLE, MIN_TITLE, MIN_PASSWORD,
+    DEFAULT_PRIORITY, DEFAULT_COLOR, MIN_PRIORITY, MAX_PRIORITY)
 import re
-import os
-import json
-import sys
-import math
-import hashlib
 
 def format_date(date_obj):
     if date_obj:
@@ -35,7 +32,7 @@ def generate_id():
 
 def log_action(action, details=None):
 
-    timestamp = datetime.utcnow()
+    timestamp = utcnow()
     print(f"[{timestamp}] ACTION: {action}")
     if details:
         print(f"  DETAILS: {details}")
@@ -61,7 +58,7 @@ def process_task_data(data, existing_task=None):
         title = data['title']
         if title:
             title = title.strip()
-            if len(title) >= 3 and len(title) <= 200:
+            if MIN_TITLE <= len(title) <= MAX_TITLE:
                 result['title'] = title
             else:
                 return None, 'Título deve ter entre 3 e 200 caracteres'
@@ -72,7 +69,7 @@ def process_task_data(data, existing_task=None):
         result['description'] = data['description']
 
     if 'status' in data:
-        valid_statuses = ['pending', 'in_progress', 'done', 'cancelled']
+        valid_statuses = STATUSES
         if data['status'] in valid_statuses:
             result['status'] = data['status']
         else:
@@ -81,7 +78,7 @@ def process_task_data(data, existing_task=None):
     if 'priority' in data:
         try:
             p = int(data['priority'])
-            if p >= 1 and p <= 5:
+            if MIN_PRIORITY <= p <= MAX_PRIORITY:
                 result['priority'] = p
             else:
                 return None, 'Prioridade deve ser entre 1 e 5'
@@ -107,10 +104,8 @@ def process_task_data(data, existing_task=None):
 
     return result, None
 
-VALID_STATUSES = ['pending', 'in_progress', 'done', 'cancelled']
-VALID_ROLES = ['user', 'admin', 'manager']
-MAX_TITLE_LENGTH = 200
-MIN_TITLE_LENGTH = 3
-MIN_PASSWORD_LENGTH = 4
-DEFAULT_PRIORITY = 3
-DEFAULT_COLOR = '#000000'
+VALID_STATUSES = list(STATUSES)
+VALID_ROLES = list(ROLES)
+MAX_TITLE_LENGTH = MAX_TITLE
+MIN_TITLE_LENGTH = MIN_TITLE
+MIN_PASSWORD_LENGTH = MIN_PASSWORD

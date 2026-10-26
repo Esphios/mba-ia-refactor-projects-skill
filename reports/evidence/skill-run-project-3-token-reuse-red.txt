@@ -1,0 +1,31 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________ test_deleted_account_token_cannot_follow_reused_user_id ___________
+
+app = <Flask 'app'>
+
+    def test_deleted_account_token_cannot_follow_reused_user_id(app):
+        client = app.test_client()
+        admin = auth(client, 'admin')
+    
+        created_user = client.post('/users', json={
+            'name': 'Temporary user', 'email': 'temporary-user@example.com', 'password': 'p�ss'
+        })
+        assert created_user.status_code == 201
+        former_user_id = created_user.json['id']
+        former_user = auth(client, 'temporary-user')
+        assert client.delete(f'/users/{former_user_id}', headers=admin).status_code == 200
+        replacement = client.post('/users', json={
+            'name': 'Replacement', 'email': 'replacement@example.com', 'password': 'safe-password'
+        })
+        assert replacement.status_code == 201 and replacement.json['id'] == former_user_id
+>       assert client.get(f'/users/{former_user_id}', headers=former_user).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/users/5', headers={'Authorization': 'Bearer <REDACTED_TEST_TOKEN>'})
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+tests\skill_run\test_approved.py:60: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/skill_run/test_approved.py::test_deleted_account_token_cannot_follow_reused_user_id
+1 failed in 3.69s
