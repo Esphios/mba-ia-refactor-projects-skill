@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-23",
+  "input": "original project snapshot plus refactor-arch skill",
+  "project": "ecommerce-api-legacy",
+  "files": [
+    {
+      "path": ".agents/skills/refactor-arch/references/anti-patterns.md",
+      "sha256": "3af06747b49de41ff5006214423f10d3cd9f7e2ae3d42e8d7b1de31730c8fe69",
+      "bytes": 2934
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/audit-report-template.md",
+      "sha256": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+      "bytes": 1278
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/delivery.md",
+      "sha256": "f0be1746fb11f43c7d03e03548f4874c00d272d7be78e865d5505200d15634e1",
+      "bytes": 4021
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/mvc-guidelines.md",
+      "sha256": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+      "bytes": 1560
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/project-analysis.md",
+      "sha256": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+      "bytes": 2143
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/refactoring-playbook.md",
+      "sha256": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+      "bytes": 13092
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/regression-checks.md",
+      "sha256": "704e68df3b81bbe24df453988bec5f40221af42b245ce649cf9016be612b7ecf",
+      "bytes": 3458
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/validation.md",
+      "sha256": "82e8d7ede41328401633fd8cb8b1af8f16aacb8c1ddd67f8f5338e500f48342e",
+      "bytes": 1783
+    },
+    {
+      "path": ".agents/skills/refactor-arch/SKILL.md",
+      "sha256": "5113639e569ae7cb391ccd924971c31a9b06f9f3994d3a9724b4f9e4e8bdb937",
+      "bytes": 6640
+    },
+    {
+      "path": "api.http",
+      "sha256": "0812f8dbbe69a2c00f40041ea44463be452880a187a8e000dba1761bdfd7c9b5",
+      "bytes": 771
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "ff1885d74690bbc6084fcca372ee3414c8a0966857c859fca54005f4cb5fb8c2",
+      "bytes": 85272
+    },
+    {
+      "path": "package.json",
+      "sha256": "727f4c7fe54e5e5dba20ca677c326e4c70342b61fb56c14b26799533ab47df54",
+      "bytes": 547
+    },
+    {
+      "path": "README.md",
+      "sha256": "2d28bb11b0421b4283a6b0037933f98d85b71c28e879e5862f168caa0755cf10",
+      "bytes": 7289
+    },
+    {
+      "path": "scripts/account.cjs",
+      "sha256": "e6151599a16c26e1995591b667c165d4288f66fc77dd15bd4558383f7fda5217",
+      "bytes": 1595
+    },
+    {
+      "path": "scripts/seed-demo.cjs",
+      "sha256": "7b360262b7e341e1607d2415b5e64e2798ad5ffa37706b5f46f9b4771b8f5adf",
+      "bytes": 481
+    },
+    {
+      "path": "src/app.js",
+      "sha256": "8f11923682377baf28109d86cfd7bc9d82ec8a32af56f63cc0931737d71e308d",
+      "bytes": 1291
+    },
+    {
+      "path": "src/config.js",
+      "sha256": "a3bf8bd2d6af44e09e102eb5a7c4b626e5d9dfd0b45a09f2d9ef6012270aa95f",
+      "bytes": 335
+    },
+    {
+      "path": "src/controllers/checkout.js",
+      "sha256": "ba0266189f1c9c16e8e0671d9cdfcacf6def47e290d6dca147b4ed6bedcd2737",
+      "bytes": 796
+    },
+    {
+      "path": "src/controllers/financialReport.js",
+      "sha256": "4447a6ad1605a820df6889d9fe611849c0871826fc0bce6330d2d72ca0ebf33e",
+      "bytes": 521
+    },
+    {
+      "path": "src/controllers/users.js",
+      "sha256": "a91a416b562a7682d23a922664cd73be9955c03035f23b7fe6fc2a99b337813c",
+      "bytes": 399
+    },
+    {
+      "path": "src/database/index.js",
+      "sha256": "b0643ef49fdd0453b790587fa7c47d3605117c25ee94df9ef55a8a15a3a0196b",
+      "bytes": 4290
+    },
+    {
+      "path": "src/domain/paymentStatus.js",
+      "sha256": "f924fd04b8ce412587deae04cc4ec029c5106ce0f161f501c07d9a7c5e22b202",
+      "bytes": 53
+    },
+    {
+      "path": "src/http/errors.js",
+      "sha256": "36feeff0866eb5a3ea4ae0c2ef19a16918f576cd0fff2e2e366b166ec28e397f",
+      "bytes": 600
+    },
+    {
+      "path": "src/models/financialReport.js",
+      "sha256": "a6cf153a6eb271d607271d7c0bea7e59de38a894caae65f200d52aa1fbf20843",
+      "bytes": 1182
+    },
+    {
+      "path": "src/models/learning.js",
+      "sha256": "d57ff2d35b22af82bd4d56fdb3544a9a81b2f667bfd5d3abfd7bd542f83f40e5",
+      "bytes": 776
+    },
+    {
+      "path": "src/models/users.js",
+      "sha256": "5b43453b26ba269408673e3998dcf0753f54a741171cdc5aab304d194d48460a",
+      "bytes": 970
+    },
+    {
+      "path": "src/routes/index.js",
+      "sha256": "ab8ede52c9072ab4653a11dc0c96c500b94b0fb09a975ce5883e47de280e49f7",
+      "bytes": 662
+    },
+    {
+      "path": "src/security/identity.js",
+      "sha256": "fc2d2556e7c912d1116376319a5a0872ae683e324bcdf8c59ea75f0de1545469",
+      "bytes": 997
+    },
+    {
+      "path": "src/security/passwords.js",
+      "sha256": "69fb3f22a1a0e554d5f323405f30eb3024b6aa455d04d6aa0c8f92705518bfc6",
+      "bytes": 1076
+    },
+    {
+      "path": "src/server.js",
+      "sha256": "f68836d248fe6c1f8647dafbc0f8d46f6d87dc14fdc00add255a98bbdc020862",
+      "bytes": 1251
+    },
+    {
+      "path": "src/services/checkout.js",
+      "sha256": "32dcaee10f3a4f3f48480effbe4dc226db6eac183fe600851bbfac5dc2af11a1",
+      "bytes": 1660
+    },
+    {
+      "path": "src/services/paymentSimulator.js",
+      "sha256": "a31efd4d0d78ef872a8fb56ceedbe0068d083d74c951aa4141b348618813f614",
+      "bytes": 220
+    },
+    {
+      "path": "src/services/userDeletion.js",
+      "sha256": "d3f5b2e73f15067f5ac6fe416cc06d289729312fb6677b79bbe410ebff777261",
+      "bytes": 540
+    },
+    {
+      "path": "test/contracts.test.cjs",
+      "sha256": "f1311dfa858d8c85609354dab887d3d97872b67b741d9e6c3855eda4adc8cc68",
+      "bytes": 7076
+    },
+    {
+      "path": "test/http-matrix.cjs",
+      "sha256": "b314f012630d002dcba515b44da78bf8b648bbb7fbf6655ec82d3e05cf4b3a63",
+      "bytes": 10790
+    },
+    {
+      "path": "test/operations.test.cjs",
+      "sha256": "6d34a9567aaa82a691be7685d8146eb8eaae8153b8ef3a31ed82f8c10599eb2e",
+      "bytes": 9607
+    },
+    {
+      "path": "test/security.test.cjs",
+      "sha256": "49b712d28898ea4f4a3f794378bb42c50037cfbaf32d1dbc2ce94ce7e797ef17",
+      "bytes": 1967
+    },
+    {
+      "path": "test/support.cjs",
+      "sha256": "bf943626fa5f6333ed08e0054c5a5fe3766ccfaa9d5453d130c9faac65cfc589",
+      "bytes": 1237
+    }
+  ]
+}

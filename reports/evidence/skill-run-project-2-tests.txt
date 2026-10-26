@@ -1,0 +1,33 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test --test-concurrency=1 test/*.test.cjs
+
+✔ E03 salts, full Unicode password and no truncated fallback (159.5943ms)
+✔ E04/E07 Basic current role, ownership and working physical/deactivation deletion (863.7319ms)
+✔ E05 full checkout transaction rolls back every required write (195.1633ms)
+✔ E05 serialized concurrent checkout reuses account and preserves each payment (327.9164ms)
+✔ E08 financial shape, absent relations, nonpaid amount and first payment parity (80.4631ms)
+✔ E10 invalid/missing/null inputs are controlled and valid existing checkout works (133.8172ms)
+✔ E06/E05 explicit transaction rollback and queued reads never see partial state (9.0705ms)
+✔ E05 commit failure rolls back user/enrollment/payment/audit, not only a write failure (406.0204ms)
+✔ E08 report performs one SELECT with 1 and 20 enrollments (13.1197ms)
+✔ E03 migration preserves legacy financial data; operational reset rejects prefixes and changes full password (222.4113ms)
+✔ E06 invalid database path fails initialization without listening (0.8895ms)
+✔ E09 database failures in report/course/deletion return controlled errors without false success (123.4659ms)
+✔ E08 empty database report and null legacy amounts retain JSON semantics (6.6778ms)
+✔ E07 orphan financial history stays Unknown when checkout creates a user (119.1666ms)
+✔ E07 account create skips user ids referenced by orphan enrollments (128.1604ms)
+✔ E07 checkout skips enrollment ids referenced by orphan payments (44.6134ms)
+✔ E04 financial report requires verified identity (335.628ms)
+✔ E04 existing checkout rejects wrong password without writing (32.8642ms)
+✔ E05 payment denial does not create an account (10.9313ms)
+✔ E04 unauthenticated deletion cannot remove a linked account (9.6269ms)
+✔ E01 checkout never logs the submitted card (49.126ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3501.6415

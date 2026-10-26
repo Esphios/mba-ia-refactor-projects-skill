@@ -1,0 +1,230 @@
+{
+  "command": "npm run test:http",
+  "readinessTimeoutMs": 10000,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 500
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 500
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 500
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 500
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/3",
+      "status": 401
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/3",
+      "status": 403
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/NaN",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/5",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 403,
+      "scenario": "concurrent deletion"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/3",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/checkout",
+      "status": 403
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/3",
+      "status": 403
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/3",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/6",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/99999",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/financial-report",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/does-not-exist",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/financial-report",
+      "status": 404
+    }
+  ],
+  "boot": [
+    "{\"event\":\"ready\",\"pid\":6476,\"port\":54074}"
+  ],
+  "cleanup": true,
+  "pid": 6476,
+  "port": 54074,
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "result": "PASS",
+  "endpointCount": 3,
+  "caseCount": 42
+}

@@ -1,0 +1,53 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test --test-concurrency=1 test/*.test.cjs
+
+✔ E03 salts, full Unicode password and no truncated fallback (150.5813ms)
+✔ E04/E07 Basic current role, ownership and working physical/deactivation deletion (792.4162ms)
+✔ E05 full checkout transaction rolls back every required write (194.2451ms)
+✔ E05 serialized concurrent checkout reuses account and preserves each payment (303.8221ms)
+✔ E08 financial shape, absent relations, nonpaid amount and first payment parity (77.0503ms)
+✔ E10 invalid/missing/null inputs are controlled and valid existing checkout works (128.4433ms)
+✔ E06/E05 explicit transaction rollback and queued reads never see partial state (5.0773ms)
+✔ E05 commit failure rolls back user/enrollment/payment/audit, not only a write failure (412.8679ms)
+✔ E08 report performs one SELECT with 1 and 20 enrollments (11.818ms)
+✔ E03 migration preserves legacy financial data; operational reset rejects prefixes and changes full password (201.6426ms)
+✔ E06 invalid database path fails initialization without listening (0.722ms)
+✔ E09 database failures in report/course/deletion return controlled errors without false success (118.0429ms)
+✔ E08 empty database report and null legacy amounts retain JSON semantics (5.2603ms)
+✔ E07 orphan financial history stays Unknown when checkout creates a user (109.6828ms)
+✔ E07 account create skips user ids referenced by orphan enrollments (127.1978ms)
+✖ E07 checkout skips enrollment ids referenced by orphan payments (47.7615ms)
+✔ E04 financial report requires verified identity (320.1125ms)
+✔ E04 existing checkout rejects wrong password without writing (30.0127ms)
+✔ E05 payment denial does not create an account (9.3222ms)
+✔ E04 unauthenticated deletion cannot remove a linked account (8.3854ms)
+✔ E01 checkout never logs the submitted card (44.4235ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3313.0337
+
+✖ failing tests:
+
+test at test\operations.test.cjs:137:1
+✖ E07 checkout skips enrollment ids referenced by orphan payments (47.7615ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(response.json().enrollment_id>2)
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\operations.test.cjs:143:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

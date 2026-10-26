@@ -1,0 +1,109 @@
+✖ E04 financial report requires verified identity (363.8478ms)
+[REDACTED legacy sensitive log]
+[LOG] Salvando no cache: last_checkout_1
+✖ E04 existing checkout rejects wrong password without writing (32.3287ms)
+[REDACTED legacy sensitive log]
+✖ E05 payment denial does not create an account (22.2249ms)
+✖ E04 unauthenticated deletion cannot remove a linked account (11.5793ms)
+✖ E01 checkout never logs the submitted card (20.3419ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 546.9318
+
+✖ failing tests:
+
+test at test\security.test.cjs:5:1
+✖ E04 financial report requires verified identity (363.8478ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\security.test.cjs:7:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\security.test.cjs:10:1
+✖ E04 existing checkout rejects wrong password without writing (32.3287ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\security.test.cjs:14:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\security.test.cjs:18:1
+✖ E05 payment denial does not create an account (22.2249ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\security.test.cjs:21:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\security.test.cjs:24:1
+✖ E04 unauthenticated deletion cannot remove a linked account (11.5793ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\security.test.cjs:26:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\security.test.cjs:30:1
+✖ E01 checkout never logs the submitted card (20.3419ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(!logs.join('\n').includes('[CARD REDACTED]'))
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\security.test.cjs:35:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+

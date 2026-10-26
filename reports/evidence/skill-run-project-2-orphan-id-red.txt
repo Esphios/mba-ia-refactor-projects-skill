@@ -1,0 +1,68 @@
+
+> desafio-arquitetura-ia-boilerplate@1.0.0 test
+> node --test --test-concurrency=1 test/*.test.cjs
+
+✔ E03 salts, full Unicode password and no truncated fallback (228.6005ms)
+✔ E04/E07 Basic current role, ownership and working physical/deactivation deletion (1611.0832ms)
+✔ E05 full checkout transaction rolls back every required write (228.8767ms)
+✔ E05 serialized concurrent checkout reuses account and preserves each payment (298.4334ms)
+✔ E08 financial shape, absent relations, nonpaid amount and first payment parity (76.2069ms)
+✔ E10 invalid/missing/null inputs are controlled and valid existing checkout works (133.163ms)
+✔ E06/E05 explicit transaction rollback and queued reads never see partial state (4.7815ms)
+✔ E05 commit failure rolls back user/enrollment/payment/audit, not only a write failure (374.2872ms)
+✔ E08 report performs one SELECT with 1 and 20 enrollments (9.8358ms)
+✔ E03 migration preserves legacy financial data; operational reset rejects prefixes and changes full password (223.2769ms)
+✔ E06 invalid database path fails initialization without listening (0.6897ms)
+✔ E09 database failures in report/course/deletion return controlled errors without false success (126.201ms)
+✔ E08 empty database report and null legacy amounts retain JSON semantics (5.5227ms)
+✖ E07 orphan financial history stays Unknown when checkout creates a user (81.2568ms)
+✖ E07 account create skips user ids referenced by orphan enrollments (123.6136ms)
+✔ E04 financial report requires verified identity (306.3963ms)
+✔ E04 existing checkout rejects wrong password without writing (35.8907ms)
+✔ E05 payment denial does not create an account (8.3303ms)
+✔ E04 unauthenticated deletion cannot remove a linked account (7.9289ms)
+✔ E01 checkout never logs the submitted card (41.5803ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 18
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4308.0438
+
+✖ failing tests:
+
+test at test\operations.test.cjs:96:1
+✖ E07 orphan financial history stays Unknown when checkout creates a user (81.2568ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(created.id>2)
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\operations.test.cjs:106:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test\operations.test.cjs:119:1
+✖ E07 account create skips user ids referenced by orphan enrollments (123.6136ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(account.id>7)
+  
+      at TestContext.<anonymous> (<REPO>\ecommerce-api-legacy\test\operations.test.cjs:133:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

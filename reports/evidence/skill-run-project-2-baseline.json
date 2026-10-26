@@ -1,0 +1,27 @@
+{
+  "original": true,
+  "endpoints": 3,
+  "success": 200,
+  "denied": 400,
+  "deletion": 200,
+  "seedReport": [
+    {
+      "course": "Docker",
+      "revenue": 0,
+      "students": []
+    },
+    {
+      "course": "Clean Architecture",
+      "revenue": 997,
+      "students": [
+        {
+          "student": "Leonan",
+          "paid": 997
+        }
+      ]
+    }
+  ],
+  "denialCreatesUser": true,
+  "deletionRetainsOrphanPayments": true,
+  "assertions": "PASS"
+}
