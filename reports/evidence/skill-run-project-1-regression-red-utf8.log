@@ -1,0 +1,44 @@
+FFFF...............                                                      [100%]
+================================== FAILURES ===================================
+_ test_empty_objects_keep_known_error_messages[/login-body0-Email e senha s\xe3o obrigat\xf3rios] _
+code-smells-project\tests\test_regressions.py:18: in test_empty_objects_keep_known_error_messages
+    assert response.get_json() == {'erro':message}
+E   AssertionError: assert {'erro': 'Dados inválidos'} == {'erro': 'Ema...obrigatórios'}
+E     
+E     Differing items:
+E     {'erro': 'Dados inválidos'} != {'erro': 'Email e senha são obrigatórios'}
+E     Use -v to get more diff
+_ test_empty_objects_keep_known_error_messages[/admin/query-body1-Query n\xe3o informada] _
+code-smells-project\tests\test_regressions.py:18: in test_empty_objects_keep_known_error_messages
+    assert response.get_json() == {'erro':message}
+E   AssertionError: assert {'erro': 'Dados inválidos'} == {'erro': 'Que...ão informada'}
+E     
+E     Differing items:
+E     {'erro': 'Dados inválidos'} != {'erro': 'Query não informada'}
+E     Use -v to get more diff
+_ test_empty_objects_keep_known_error_messages[/pedidos/999/status-body2-Status inv\xe1lido] _
+code-smells-project\tests\test_regressions.py:18: in test_empty_objects_keep_known_error_messages
+    assert response.get_json() == {'erro':message}
+E   AssertionError: assert {'erro': 'Dados inválidos'} == {'erro': 'Status inválido'}
+E     
+E     Differing items:
+E     {'erro': 'Dados inválidos'} != {'erro': 'Status inválido'}
+E     Use -v to get more diff
+________ test_health_failure_retains_envelope_without_internal_details ________
+code-smells-project\tests\test_regressions.py:27: in test_health_failure_retains_envelope_without_internal_details
+    assert response.get_json() == {'status':'erro','detalhes':'Erro interno do servidor'}
+E   AssertionError: assert {'erro': 'Err... do servidor'} == {'detalhes': ...atus': 'erro'}
+E     
+E     Left contains 1 more item:
+E     {'erro': 'Erro interno do servidor'}
+E     Right contains 2 more items:
+E     {'detalhes': 'Erro interno do servidor', 'status': 'erro'}
+E     Use -v to get more diff
+------------------------------ Captured log call ------------------------------
+ERROR    app:app.py:52 Falha interna no processamento (OperationalError)
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_regressions.py::test_empty_objects_keep_known_error_messages[/login-body0-Email e senha s\xe3o obrigat\xf3rios]
+FAILED code-smells-project/tests/test_regressions.py::test_empty_objects_keep_known_error_messages[/admin/query-body1-Query n\xe3o informada]
+FAILED code-smells-project/tests/test_regressions.py::test_empty_objects_keep_known_error_messages[/pedidos/999/status-body2-Status inv\xe1lido]
+FAILED code-smells-project/tests/test_regressions.py::test_health_failure_retains_envelope_without_internal_details
+4 failed, 15 passed in 9.75s

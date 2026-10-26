@@ -1,0 +1,122 @@
+.......FF..........FF..                                                  [100%]
+================================== FAILURES ===================================
+________ test_list_select_count_is_constant_with_one_and_twenty_orders ________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-59/...ization': 'Bearer <REDACTED_TEST_TOKEN>'}})
+
+    def test_list_select_count_is_constant_with_one_and_twenty_orders(shop):
+        app,c,path,h=shop
+        from database import get_db
+        from models.orders import Orders
+        counts=[]
+        for n in (1,20):
+            with sqlite3.connect(path) as db:
+                db.execute('DELETE FROM itens_pedido'); db.execute('DELETE FROM pedidos')
+                for i in range(n):
+                    order=db.execute("INSERT INTO pedidos(usuario_id,status,total) VALUES(2,'pendente',12.5)").lastrowid
+                    db.execute('INSERT INTO itens_pedido(pedido_id,produto_id,quantidade,preco_unitario) VALUES(?,1,1,12.5)',(order,))
+            with app.app_context():
+                queries=[]
+                get_db().set_trace_callback(lambda sql:queries.append(sql) if sql.lstrip().upper().startswith('SELECT') else None)
+                result=Orders(get_db()).list(2)
+                assert len(result) == n
+                assert all(row['itens'][0]['produto_nome']=='Caf\xe9 \u6771\u4eac' for row in result)
+                counts.append(len(queries))
+>       assert counts == [1,1]
+E       assert [2, 2] == [1, 1]
+E         
+E         At index 0 diff: 2 != 1
+E         Use -v to get more diff
+
+tests\test_regressions.py:63: AssertionError
+__ test_order_listing_is_a_consistent_single_query_during_concurrent_insert ___
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-59/...ization': 'Bearer <REDACTED_TEST_TOKEN>'}})
+
+    def test_order_listing_is_a_consistent_single_query_during_concurrent_insert(shop):
+        app,_,path,_=shop
+        from database import get_db
+        from models.orders import Orders
+        with sqlite3.connect(path) as db:
+            first=db.execute("INSERT INTO pedidos(usuario_id,status,total) VALUES(2,'pendente',12.5)").lastrowid
+            db.execute('INSERT INTO itens_pedido(pedido_id,produto_id,quantidade,preco_unitario) VALUES(?,1,1,12.5)',(first,))
+        with app.app_context():
+            connection=get_db(); inserted=[]
+            def insert_before_item_read(sql):
+                if not inserted and 'FROM itens_pedido' in sql:
+                    inserted.append(True)
+                    with sqlite3.connect(path) as other:
+                        order=other.execute("INSERT INTO pedidos(usuario_id,status,total) VALUES(2,'pendente',7.25)").lastrowid
+                        other.execute('INSERT INTO itens_pedido(pedido_id,produto_id,quantidade,preco_unitario) VALUES(?,2,1,7.25)',(order,))
+            connection.set_trace_callback(insert_before_item_read)
+>           result=Orders(connection).list()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_regressions.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <models.orders.Orders object at 0x000001EB80DBC110>, user_id = None
+
+    def list(self, user_id=None):
+        where = '' if user_id is None else ' WHERE usuario_id=?'
+        values = () if user_id is None else (user_id,)
+        fields = ('id','usuario_id','status','total','criado_em')
+        orders = [{field:row[field] for field in fields}
+            for row in self.db.execute('SELECT * FROM pedidos' + where + ' ORDER BY id', values)]
+        by_id = {row['id']: row for row in orders}
+        for row in orders:
+            row['itens'] = []
+        if not orders:
+            return orders
+        # Fixed two queries; join by ownership also avoids SQLite parameter limits.
+        condition = '' if user_id is None else ' WHERE o.usuario_id=?'
+        query = ('SELECT i.pedido_id,i.produto_id,p.id AS related_product_id,p.nome AS produto_nome,i.quantidade,i.preco_unitario '
+            'FROM itens_pedido i JOIN pedidos o ON o.id=i.pedido_id '
+            'LEFT JOIN produtos p ON p.id=i.produto_id' + condition + ' ORDER BY i.id')
+        for item in self.db.execute(query, values):
+>           by_id[item['pedido_id']]['itens'].append({
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+                'produto_id': item['produto_id'],
+                'produto_nome': item['produto_nome'] if item['related_product_id'] is not None else 'Desconhecido',
+                'quantidade': item['quantidade'], 'preco_unitario': item['preco_unitario']})
+E           KeyError: 2
+
+models\orders.py:29: KeyError
+_ test_duplicate_emails_authenticate_the_matching_account_and_upgrade_only_it _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-59/...ization': 'Bearer <REDACTED_TEST_TOKEN>'}})
+
+    def test_duplicate_emails_authenticate_the_matching_account_and_upgrade_only_it(shop):
+        _,c,path,_=shop
+        with sqlite3.connect(path) as db:
+            db.execute("INSERT INTO usuarios(nome,email,senha,tipo) VALUES('Primeira','dup@example.test',?,'cliente')",
+                (generate_password_hash('first-password'),))
+            second=db.execute("INSERT INTO usuarios(nome,email,senha,tipo) VALUES('Segunda','dup@example.test','second-password','cliente')").lastrowid
+        response=c.post('/login',json={'email':'dup@example.test','senha':'second-password'})
+>       assert response.status_code == 200 and response.get_json()['dados']['id'] == second
+E       assert (401 == 200)
+E        +  where 401 = <WrapperTestResponse streamed [401 UNAUTHORIZED]>.status_code
+
+tests\test_regressions.py:130: AssertionError
+_______ test_large_sqlite_integers_preserve_original_endpoint_semantics _______
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-59/...rization': 'Bearer <REDACTED_TEST_TOKEN>'}})
+
+    def test_large_sqlite_integers_preserve_original_endpoint_semantics(shop):
+        _,c,path,h=shop
+        huge=9223372036854775808
+>       assert c.get(f'/produtos/{huge}').status_code == 404
+E       AssertionError: assert 500 == 404
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+E        +    where <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]> = get('/produtos/9223372036854775808')
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+tests\test_regressions.py:139: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    app:app.py:52 Falha interna no processamento (OverflowError)
+=========================== short test summary info ===========================
+FAILED tests/test_regressions.py::test_list_select_count_is_constant_with_one_and_twenty_orders
+FAILED tests/test_regressions.py::test_order_listing_is_a_consistent_single_query_during_concurrent_insert
+FAILED tests/test_regressions.py::test_duplicate_emails_authenticate_the_matching_account_and_upgrade_only_it
+FAILED tests/test_regressions.py::test_large_sqlite_integers_preserve_original_endpoint_semantics
+4 failed, 19 passed in 10.15s

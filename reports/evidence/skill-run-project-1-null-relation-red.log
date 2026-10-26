@@ -1,0 +1,9 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+________ test_existing_null_product_name_differs_from_missing_relation ________
+code-smells-project\tests\test_regressions.py:123: in test_existing_null_product_name_differs_from_missing_relation
+    assert order['itens'][0]['produto_nome'] is None
+E   AssertionError: assert 'Desconhecido' is None
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_regressions.py::test_existing_null_product_name_differs_from_missing_relation
+1 failed in 0.94s

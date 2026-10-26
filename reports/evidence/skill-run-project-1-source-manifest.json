@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-23",
+  "input": "original project snapshot plus refactor-arch skill",
+  "project": "code-smells-project",
+  "files": [
+    {
+      "path": ".agents/skills/refactor-arch/references/anti-patterns.md",
+      "sha256": "3af06747b49de41ff5006214423f10d3cd9f7e2ae3d42e8d7b1de31730c8fe69",
+      "bytes": 2934
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/audit-report-template.md",
+      "sha256": "3db9edc629385c83e7311088096009893a0aea1f745d72cffe968f2c9487a7d4",
+      "bytes": 1278
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/delivery.md",
+      "sha256": "f0be1746fb11f43c7d03e03548f4874c00d272d7be78e865d5505200d15634e1",
+      "bytes": 4021
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/mvc-guidelines.md",
+      "sha256": "c3f87c2a18afb3471b19411feaab919b2d1922c4ebaa5d2c9911876ea8f12c8d",
+      "bytes": 1560
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/project-analysis.md",
+      "sha256": "8991985ebded97d135e4b4e176da7bd83646cd1debec3c829e790066dea29b49",
+      "bytes": 2143
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/refactoring-playbook.md",
+      "sha256": "42052e8581adbf30d5e11bc86b23bcf936927a6a08d7dd8d49429a692db33faf",
+      "bytes": 13092
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/regression-checks.md",
+      "sha256": "704e68df3b81bbe24df453988bec5f40221af42b245ce649cf9016be612b7ecf",
+      "bytes": 3458
+    },
+    {
+      "path": ".agents/skills/refactor-arch/references/validation.md",
+      "sha256": "82e8d7ede41328401633fd8cb8b1af8f16aacb8c1ddd67f8f5338e500f48342e",
+      "bytes": 1783
+    },
+    {
+      "path": ".agents/skills/refactor-arch/SKILL.md",
+      "sha256": "5113639e569ae7cb391ccd924971c31a9b06f9f3994d3a9724b4f9e4e8bdb937",
+      "bytes": 6640
+    },
+    {
+      "path": "app.py",
+      "sha256": "cf1a8aae3d83fd4f8f7b940208b70a665400b30bff544521c478315b9c77b0c9",
+      "bytes": 2399
+    },
+    {
+      "path": "auth.py",
+      "sha256": "db601fc66cefbac99ec4b9d59a924617a967451b87223e34fc04cc121573d939",
+      "bytes": 3302
+    },
+    {
+      "path": "controllers/__init__.py",
+      "sha256": "c5b053cee8c530bd8d75e486a992b7aecfbaebe724d09e0fc2a72731f8d25bf3",
+      "bytes": 61
+    },
+    {
+      "path": "controllers/shop.py",
+      "sha256": "144826323f86030b9b9f68865adaa78be9406c22efd207e77243189515c58755",
+      "bytes": 5575
+    },
+    {
+      "path": "database.py",
+      "sha256": "e612d7c344aa8c623e715718da85c19365d8129f61a2c7c723574bd565c6db26",
+      "bytes": 3924
+    },
+    {
+      "path": "domain.py",
+      "sha256": "efeb173216c546bee9112da41921c51f66247e9cc2475547ec9e766b9a430e97",
+      "bytes": 1007
+    },
+    {
+      "path": "models/__init__.py",
+      "sha256": "bfea124ab4df5b1851c7c6c3822830682a7ffc4aec88731601730dbb9145aa25",
+      "bytes": 52
+    },
+    {
+      "path": "models/orders.py",
+      "sha256": "44921c63f4e3d2683b4eb15ef6035a9030c65601577df1da26e81489105b001a",
+      "bytes": 2204
+    },
+    {
+      "path": "models/products.py",
+      "sha256": "52b0e991f088684bd12da63961c3bef27525f38cfd023a28e83534a32fb8db98",
+      "bytes": 1976
+    },
+    {
+      "path": "models/system.py",
+      "sha256": "2cfca4ef98e7cf03e9d95a4d99913a30ca83d3208b8b4b07e92be1ebaca6727d",
+      "bytes": 613
+    },
+    {
+      "path": "models/users.py",
+      "sha256": "cb13fda42aec940eb075e48367ed7bbbf194809dfd93e9c919100dbfe5c1dc6c",
+      "bytes": 918
+    },
+    {
+      "path": "README.md",
+      "sha256": "9afb9575ac82c7b37601f11145346ccdabb2975913198d85d73f6c91c91f20a7",
+      "bytes": 8135
+    },
+    {
+      "path": "requirements-dev.txt",
+      "sha256": "9ec97a1828e259257ae42d7b72fac204757feb264bbcce65d3d984c79d8dc880",
+      "bytes": 59
+    },
+    {
+      "path": "requirements-lock.txt",
+      "sha256": "fc468163e485c270451ec2265a4c0da119a8b10eb814c161e697c2df002174ea",
+      "bytes": 235
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "9920665bd7c8d475dee2eee94465f9f02b2ecd834b1975a058a0206cd91cdde4",
+      "bytes": 33
+    },
+    {
+      "path": "routes/__init__.py",
+      "sha256": "c4fac0e36e99f2a66beee117dfb4c1f95e9ed8c6cf5e6a660bc370b407c14342",
+      "bytes": 3346
+    },
+    {
+      "path": "serializers.py",
+      "sha256": "df1d5c0b9ebe5aa1ffa8c6d659978f14461e625716c2ce7991607df3a974fa95",
+      "bytes": 410
+    },
+    {
+      "path": "services/__init__.py",
+      "sha256": "072f5b2e25394b6ac440e85f23f2277196aa177dd17b4e9b8785d0062163d9a4",
+      "bytes": 62
+    },
+    {
+      "path": "services/checkout.py",
+      "sha256": "3baa289dcff768c8cac8fe2d8b46ad5bc281c4a351abb49855f57129774a219c",
+      "bytes": 1581
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "f9dc2deab686fd2ae179f20a80754e852c2cba338cd00de520bbb8ce2bc9d83d",
+      "bytes": 2597
+    },
+    {
+      "path": "tests/http_server.py",
+      "sha256": "f8eb835e9c2e6e97a532ce62b032d0b7ba9dfacf8e6b831a08c27e5f1aacd504",
+      "bytes": 451
+    },
+    {
+      "path": "tests/run_http_matrix.py",
+      "sha256": "37c1ff983e757ab1d1fe5fefc74377460ccd06566bb168fea5fe33aaa8391c30",
+      "bytes": 9423
+    },
+    {
+      "path": "tests/test_contract.py",
+      "sha256": "576a8ffd320226a6ecde2d0205301b2d8700de706d5284eecb829512ca413420",
+      "bytes": 5588
+    },
+    {
+      "path": "tests/test_http_runner.py",
+      "sha256": "9f28e984cf6cc8a31b71551d9c82b6fc1f680cdab094f2be7f859a42a74edbe6",
+      "bytes": 701
+    },
+    {
+      "path": "tests/test_regressions.py",
+      "sha256": "0f7ead132e6083f530a45db3478265194b07d4e5b1472cff8c3403a84b67d709",
+      "bytes": 9038
+    },
+    {
+      "path": "tests/test_security.py",
+      "sha256": "2fc797cc91e691c1174c29a4696e8da0b38dac03bdad69f91e0caf08a93f585f",
+      "bytes": 9307
+    },
+    {
+      "path": "validators.py",
+      "sha256": "ae859c1fbf79a27b700a8039fc3de417fa8d69057883bb5c37e91ac0bec66339",
+      "bytes": 3399
+    }
+  ]
+}

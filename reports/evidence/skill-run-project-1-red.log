@@ -1,0 +1,881 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFF...FFFFFFFFF                                 [100%]
+================================== FAILURES ===================================
+__ test_sensitive_operations_require_verified_identity[POST-/produtos-body0] __
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'POST', path = '/produtos'
+body = {'estoque': 1, 'nome': 'AA', 'preco': 1}
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 201 == 401
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +    where <WrapperTestResponse streamed [201 CREATED]> = open('/produtos', method='POST', json={'estoque': 1, 'nome': 'AA', 'preco': 1})
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+Produto criado com ID: 11
+_ test_sensitive_operations_require_verified_identity[PUT-/produtos/1-body1] __
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ1/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'PUT', path = '/produtos/1'
+body = {'estoque': 1, 'nome': 'AA', 'preco': 1}
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/produtos/1', method='PUT', json={'estoque': 1, 'nome': 'AA', 'preco': 1})
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_ test_sensitive_operations_require_verified_identity[DELETE-/produtos/1-None] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ2/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'DELETE', path = '/produtos/1', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/produtos/1', method='DELETE', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+Produto 1 deletado
+___ test_sensitive_operations_require_verified_identity[GET-/usuarios-None] ___
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ3/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'GET', path = '/usuarios', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/usuarios', method='GET', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+__ test_sensitive_operations_require_verified_identity[GET-/usuarios/2-None] __
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ4/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'GET', path = '/usuarios/2', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/usuarios/2', method='GET', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+___ test_sensitive_operations_require_verified_identity[GET-/pedidos-None] ____
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ5/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'GET', path = '/pedidos', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/pedidos', method='GET', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_ test_sensitive_operations_require_verified_identity[GET-/pedidos/usuario/2-None] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ6/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'GET', path = '/pedidos/usuario/2', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/pedidos/usuario/2', method='GET', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+__ test_sensitive_operations_require_verified_identity[POST-/pedidos-body7] ___
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ7/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'POST', path = '/pedidos'
+body = {'itens': [{'produto_id': 1, 'quantidade': 1}], 'usuario_id': 2}
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 201 == 401
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +    where <WrapperTestResponse streamed [201 CREATED]> = open('/pedidos', method='POST', json={'itens': [{'produto_id': 1, 'quantidade': 1}], 'usuario_id': 2})
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+_ test_sensitive_operations_require_verified_identity[PUT-/pedidos/1/status-body8] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ8/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'PUT', path = '/pedidos/1/status', body = {'status': 'aprovado'}
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/pedidos/1/status', method='PUT', json={'status': 'aprovado'})
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+NOTIFICA��O: Pedido 1 foi aprovado! Preparar envio.
+_ test_sensitive_operations_require_verified_identity[GET-/relatorios/vendas-None] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ9/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'GET', path = '/relatorios/vendas', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/relatorios/vendas', method='GET', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_ test_sensitive_operations_require_verified_identity[POST-/admin/query-body10] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ10/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'POST', path = '/admin/query', body = {'sql': 'SELECT 1'}
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/admin/query', method='POST', json={'sql': 'SELECT 1'})
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_ test_sensitive_operations_require_verified_identity[POST-/admin/reset-db-None] _
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_operations_requ11/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+method = 'POST', path = '/admin/reset-db', body = None
+
+    @pytest.mark.parametrize('method,path,body', [
+        ('POST','/produtos',{'nome':'AA','preco':1,'estoque':1}),
+        ('PUT','/produtos/1',{'nome':'AA','preco':1,'estoque':1}),
+        ('DELETE','/produtos/1',None), ('GET','/usuarios',None),
+        ('GET','/usuarios/2',None), ('GET','/pedidos',None),
+        ('GET','/pedidos/usuario/2',None), ('POST','/pedidos',{'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1}]}),
+        ('PUT','/pedidos/1/status',{'status':'aprovado'}),
+        ('GET','/relatorios/vendas',None), ('POST','/admin/query',{'sql':'SELECT 1'}),
+        ('POST','/admin/reset-db',None)])
+    def test_sensitive_operations_require_verified_identity(shop,method,path,body):
+        _,c,_,_=shop
+>       assert c.open(path,method=method,json=body).status_code == 401
+E       AssertionError: assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = open('/admin/reset-db', method='POST', json=None)
+E        +      where open = <FlaskClient <Flask 'app'>>.open
+
+code-smells-project\tests\test_security.py:22: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+!!! BANCO DE DADOS RESETADO !!!
+_________________ test_owner_admin_and_current_role_boundary __________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_owner_admin_and_current_r0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_owner_admin_and_current_role_boundary(shop):
+        _,c,path,h=shop
+>       assert c.get('/usuarios/2',headers=h['other']).status_code == 403
+E       AssertionError: assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = get('/usuarios/2', headers={})
+E        +      where get = <FlaskClient <Flask 'app'>>.get
+
+code-smells-project\tests\test_security.py:27: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+__________________ test_sensitive_fields_are_not_serialized ___________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sensitive_fields_are_not_0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_sensitive_fields_are_not_serialized(shop):
+        _,c,_,h=shop
+>       assert 'senha' not in c.get('/usuarios',headers=h['admin']).get_json()['dados'][0]
+E       AssertionError: assert 'senha' not in {'criado_em': '2026-10-23 14:18:58', 'email': 'admin@example.test', 'id': 1, 'nome': 'Admin', ...}
+
+code-smells-project\tests\test_security.py:43: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+__________ test_sql_data_cannot_bypass_login_or_break_unicode_writes __________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_sql_data_cannot_bypass_lo0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_sql_data_cannot_bypass_login_or_break_unicode_writes(shop):
+        _,c,path,h=shop
+>       assert c.post('/login',json={'email':"' OR 1=1 --",'senha':'wrong'}).status_code == 401
+E       assert 200 == 401
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = post('/login', json={'email': "' OR 1=1 --", 'senha': 'wrong'})
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_security.py:52: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+Login bem-sucedido: ' OR 1=1 --
+____________ test_password_upgrade_and_modern_failure_no_fallback _____________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_password_upgrade_and_mode0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_password_upgrade_and_modern_failure_no_fallback(shop):
+        _,c,path,h=shop
+        stored=rows(path,'SELECT senha FROM usuarios WHERE id=2')[0][0]
+>       assert stored != 'senh\xe2-\u6771\u4eac'
+E       AssertionError: assert 'senh\xe2-\u6771\u4eac' != 'senh\xe2-\u6771\u4eac'
+
+code-smells-project\tests\test_security.py:65: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+___________ test_order_rejects_invalid_quantity_without_effects[0] ____________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = 0
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+___________ test_order_rejects_invalid_quantity_without_effects[-1] ___________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua1/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = -1
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+__________ test_order_rejects_invalid_quantity_without_effects[1.5] ___________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua2/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = 1.5
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+__________ test_order_rejects_invalid_quantity_without_effects[True] __________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua3/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = True
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+___________ test_order_rejects_invalid_quantity_without_effects[1] ____________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua4/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = '1'
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO CRITICO ao criar pedido: '<' not supported between instances of 'int' and 'str'
+__________ test_order_rejects_invalid_quantity_without_effects[None] __________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_order_rejects_invalid_qua5/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+quantity = None
+
+    @pytest.mark.parametrize('quantity',[0,-1,1.5,True,'1',None])
+    def test_order_rejects_invalid_quantity_without_effects(shop,quantity):
+        _,c,path,h=shop
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':quantity}]})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:77: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO CRITICO ao criar pedido: '<' not supported between instances of 'int' and 'NoneType'
+_______________ test_cumulative_stock_and_unknown_user_rejected _______________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_cumulative_stock_and_unkn0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_cumulative_stock_and_unknown_user_rejected(shop):
+        _,c,path,h=shop
+        for payload in [
+            {'usuario_id':2,'itens':[{'produto_id':1,'quantidade':6},{'produto_id':1,'quantidade':6}]},
+            {'usuario_id':999,'itens':[{'produto_id':1,'quantidade':1}]}]:
+>           assert c.post('/pedidos',headers=h['admin'],json=payload).status_code == 400
+E           AssertionError: assert 201 == 400
+E            +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E            +    where <WrapperTestResponse streamed [201 CREATED]> = post('/pedidos', headers={}, json={'itens': [{'produto_id': 1, 'quantidade': 6}, {'produto_id': 1, 'quantidade': 6}], 'usuario_id': 2})
+E            +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_security.py:87: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+________________ test_prices_are_finite_numbers_not_bool[True] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_prices_are_finite_numbers0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+value = True
+
+    @pytest.mark.parametrize('value',[True,float('nan'),float('inf'),None,'2',-1])
+    def test_prices_are_finite_numbers_not_bool(shop,value):
+        _,c,path,h=shop
+        response=c.post('/produtos',headers=h['admin'],json={'nome':'Produto','preco':value,'estoque':2})
+>       assert response.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+code-smells-project\tests\test_security.py:96: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+Produto criado com ID: 11
+________________ test_prices_are_finite_numbers_not_bool[nan] _________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_prices_are_finite_numbers1/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+value = nan
+
+    @pytest.mark.parametrize('value',[True,float('nan'),float('inf'),None,'2',-1])
+    def test_prices_are_finite_numbers_not_bool(shop,value):
+        _,c,path,h=shop
+        response=c.post('/produtos',headers=h['admin'],json={'nome':'Produto','preco':value,'estoque':2})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:96: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO ao criar produto: no such column: nan
+________________ test_prices_are_finite_numbers_not_bool[inf] _________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_prices_are_finite_numbers2/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+value = inf
+
+    @pytest.mark.parametrize('value',[True,float('nan'),float('inf'),None,'2',-1])
+    def test_prices_are_finite_numbers_not_bool(shop,value):
+        _,c,path,h=shop
+        response=c.post('/produtos',headers=h['admin'],json={'nome':'Produto','preco':value,'estoque':2})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:96: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO ao criar produto: no such column: inf
+________________ test_prices_are_finite_numbers_not_bool[None] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_prices_are_finite_numbers3/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+value = None
+
+    @pytest.mark.parametrize('value',[True,float('nan'),float('inf'),None,'2',-1])
+    def test_prices_are_finite_numbers_not_bool(shop,value):
+        _,c,path,h=shop
+        response=c.post('/produtos',headers=h['admin'],json={'nome':'Produto','preco':value,'estoque':2})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:96: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO ao criar produto: '<' not supported between instances of 'NoneType' and 'int'
+_________________ test_prices_are_finite_numbers_not_bool[2] __________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_prices_are_finite_numbers4/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+value = '2'
+
+    @pytest.mark.parametrize('value',[True,float('nan'),float('inf'),None,'2',-1])
+    def test_prices_are_finite_numbers_not_bool(shop,value):
+        _,c,path,h=shop
+        response=c.post('/produtos',headers=h['admin'],json={'nome':'Produto','preco':value,'estoque':2})
+>       assert response.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+code-smells-project\tests\test_security.py:96: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO ao criar produto: '<' not supported between instances of 'str' and 'int'
+________________ test_update_validation_matches_creation[None] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_update_validation_matches2/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+body = None
+
+    @pytest.mark.parametrize('body',[[],[1],None,{'nome':None,'preco':2,'estoque':1},
+                                     {'nome':'A','preco':2,'estoque':1},
+                                     {'nome':'Nome','preco':2,'estoque':1,'categoria':'invalid'}])
+    def test_update_validation_matches_creation(shop,body):
+        _,c,path,h=shop
+>       assert c.put('/produtos/1',headers=h['admin'],json=body).status_code == 400
+E       AssertionError: assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+E        +    where <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]> = put('/produtos/1', headers={}, json=None)
+E        +      where put = <FlaskClient <Flask 'app'>>.put
+
+code-smells-project\tests\test_security.py:105: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_______________ test_update_validation_matches_creation[body3] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_update_validation_matches3/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+body = {'estoque': 1, 'nome': None, 'preco': 2}
+
+    @pytest.mark.parametrize('body',[[],[1],None,{'nome':None,'preco':2,'estoque':1},
+                                     {'nome':'A','preco':2,'estoque':1},
+                                     {'nome':'Nome','preco':2,'estoque':1,'categoria':'invalid'}])
+    def test_update_validation_matches_creation(shop,body):
+        _,c,path,h=shop
+>       assert c.put('/produtos/1',headers=h['admin'],json=body).status_code == 400
+E       AssertionError: assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+E        +    where <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]> = put('/produtos/1', headers={}, json={'estoque': 1, 'nome': None, 'preco': 2})
+E        +      where put = <FlaskClient <Flask 'app'>>.put
+
+code-smells-project\tests\test_security.py:105: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_______________ test_update_validation_matches_creation[body4] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_update_validation_matches4/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+body = {'estoque': 1, 'nome': 'A', 'preco': 2}
+
+    @pytest.mark.parametrize('body',[[],[1],None,{'nome':None,'preco':2,'estoque':1},
+                                     {'nome':'A','preco':2,'estoque':1},
+                                     {'nome':'Nome','preco':2,'estoque':1,'categoria':'invalid'}])
+    def test_update_validation_matches_creation(shop,body):
+        _,c,path,h=shop
+>       assert c.put('/produtos/1',headers=h['admin'],json=body).status_code == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = put('/produtos/1', headers={}, json={'estoque': 1, 'nome': 'A', 'preco': 2})
+E        +      where put = <FlaskClient <Flask 'app'>>.put
+
+code-smells-project\tests\test_security.py:105: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+_______________ test_update_validation_matches_creation[body5] ________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_update_validation_matches5/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+body = {'categoria': 'invalid', 'estoque': 1, 'nome': 'Nome', 'preco': 2}
+
+    @pytest.mark.parametrize('body',[[],[1],None,{'nome':None,'preco':2,'estoque':1},
+                                     {'nome':'A','preco':2,'estoque':1},
+                                     {'nome':'Nome','preco':2,'estoque':1,'categoria':'invalid'}])
+    def test_update_validation_matches_creation(shop,body):
+        _,c,path,h=shop
+>       assert c.put('/produtos/1',headers=h['admin'],json=body).status_code == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+E        +    where <WrapperTestResponse streamed [200 OK]> = put('/produtos/1', headers={}, json={'categoria': 'invalid', 'estoque': 1, 'nome': 'Nome', 'preco': 2})
+E        +      where put = <FlaskClient <Flask 'app'>>.put
+
+code-smells-project\tests\test_security.py:105: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+__________ test_malformed_json_and_numeric_search_are_client_errors ___________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_malformed_json_and_numeri0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_malformed_json_and_numeric_search_are_client_errors(shop):
+        _,c,_,h=shop
+>       assert c.post('/produtos',headers=h['admin'],data='{',content_type='application/json').status_code == 400
+E       AssertionError: assert 500 == 400
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+E        +    where <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]> = post('/produtos', headers={}, data='{', content_type='application/json')
+E        +      where post = <FlaskClient <Flask 'app'>>.post
+
+code-smells-project\tests\test_security.py:111: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO ao criar produto: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+_________ test_factory_lifecycle_does_not_seed_and_closes_connections _________
+
+tmp_path = WindowsPath('<TEMP>/pytest-user/pytest-39/test_factory_lifecycle_does_no0')
+
+    def test_factory_lifecycle_does_not_seed_and_closes_connections(tmp_path):
+        import app as module
+>       assert hasattr(module,'create_app'), 'factory missing: original global app mutates database lifecycle'
+E       AssertionError: factory missing: original global app mutates database lifecycle
+E       assert False
+E        +  where False = hasattr(<module 'app' from '<REPO>\\code-smells-project\\app.py'>, 'create_app')
+
+code-smells-project\tests\test_security.py:121: AssertionError
+_______ test_checkout_failure_rolls_back_all_writes_before_next_request _______
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_checkout_failure_rolls_ba0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_checkout_failure_rolls_back_all_writes_before_next_request(shop):
+        _,c,path,h=shop
+        with sqlite3.connect(path) as db:
+            db.execute("CREATE TRIGGER fail_second BEFORE INSERT ON itens_pedido WHEN NEW.produto_id=2 BEGIN SELECT RAISE(ABORT,'private sentinel'); END")
+        response=c.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':1},{'produto_id':2,'quantidade':1}]})
+        assert response.status_code == 500
+        c.post('/produtos',headers=h['admin'],json={'nome':'Other','preco':1,'estoque':1})
+>       assert rows(path,'SELECT COUNT(*) FROM pedidos') == [(0,)]
+E       assert [(1,)] == [(0,)]
+E         
+E         At index 0 diff: (1,) != (0,)
+E         Use -v to get more diff
+
+code-smells-project\tests\test_security.py:147: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ERRO CRITICO ao criar pedido: private sentinel
+Produto criado com ID: 11
+__________________ test_concurrent_checkout_never_oversells ___________________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_concurrent_checkout_never0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_concurrent_checkout_never_oversells(shop):
+        app,_,path,h=shop
+        def order(_):
+            with app.test_client() as client:
+                return client.post('/pedidos',headers=h['owner'],json={'usuario_id':2,'itens':[{'produto_id':1,'quantidade':7}]}).status_code
+        with ThreadPoolExecutor(max_workers=2) as executor:
+>           assert sorted(executor.map(order,range(2))) == [201,400]
+E           assert [201, 201] == [201, 400]
+E             
+E             At index 1 diff: 201 != 400
+E             Use -v to get more diff
+
+code-smells-project\tests\test_security.py:158: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+---------------------------- Captured stdout call -----------------------------
+ENVIANDO EMAIL: Pedido 1 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+ENVIANDO EMAIL: Pedido 2 criado para usuario 2
+ENVIANDO SMS: Seu pedido foi recebido!
+ENVIANDO PUSH: Novo pedido recebido pelo sistema
+__________ test_legacy_cutoff_and_token_expiry_use_controlled_clock ___________
+
+shop = (<Flask 'app'>, <FlaskClient <Flask 'app'>>, WindowsPath('<TEMP>/pytest-user/pytest-39/test_legacy_cutoff_and_token_e0/shop.sqlite'), {'admin': {}, 'other': {}, 'owner': {}})
+
+    def test_legacy_cutoff_and_token_expiry_use_controlled_clock(shop):
+        app,c,path,h=shop
+>       assert 'CLOCK' in app.config, 'controlled authentication clock missing'
+E       AssertionError: controlled authentication clock missing
+E       assert 'CLOCK' in <Config {'DEBUG': True, 'TESTING': True, 'PROPAGATE_EXCEPTIONS': None, 'SECRET_KEY': '[REDACTED TEST/LEGACY CREDENTIAL]', ...FERRED_URL_SCHEME': 'http', 'TEMPLATES_AUTO_RELOAD': None, 'MAX_COOKIE_SIZE': 4093, 'PROVIDE_AUTOMATIC_OPTIONS': True}>
+E        +  where <Config {'DEBUG': True, 'TESTING': True, 'PROPAGATE_EXCEPTIONS': None, 'SECRET_KEY': '[REDACTED TEST/LEGACY CREDENTIAL]', ...FERRED_URL_SCHEME': 'http', 'TEMPLATES_AUTO_RELOAD': None, 'MAX_COOKIE_SIZE': 4093, 'PROVIDE_AUTOMATIC_OPTIONS': True}> = <Flask 'app'>.config
+
+code-smells-project\tests\test_security.py:165: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Login bem-sucedido: admin@example.test
+Login bem-sucedido: joao@example.test
+Login bem-sucedido: maria@example.test
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[POST-/produtos-body0]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[PUT-/produtos/1-body1]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[DELETE-/produtos/1-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[GET-/usuarios-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[GET-/usuarios/2-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[GET-/pedidos-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[GET-/pedidos/usuario/2-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[POST-/pedidos-body7]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[PUT-/pedidos/1/status-body8]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[GET-/relatorios/vendas-None]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[POST-/admin/query-body10]
+FAILED code-smells-project/tests/test_security.py::test_sensitive_operations_require_verified_identity[POST-/admin/reset-db-None]
+FAILED code-smells-project/tests/test_security.py::test_owner_admin_and_current_role_boundary
+FAILED code-smells-project/tests/test_security.py::test_sensitive_fields_are_not_serialized
+FAILED code-smells-project/tests/test_security.py::test_sql_data_cannot_bypass_login_or_break_unicode_writes
+FAILED code-smells-project/tests/test_security.py::test_password_upgrade_and_modern_failure_no_fallback
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[0]
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[-1]
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[1.5]
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[True]
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[1]
+FAILED code-smells-project/tests/test_security.py::test_order_rejects_invalid_quantity_without_effects[None]
+FAILED code-smells-project/tests/test_security.py::test_cumulative_stock_and_unknown_user_rejected
+FAILED code-smells-project/tests/test_security.py::test_prices_are_finite_numbers_not_bool[True]
+FAILED code-smells-project/tests/test_security.py::test_prices_are_finite_numbers_not_bool[nan]
+FAILED code-smells-project/tests/test_security.py::test_prices_are_finite_numbers_not_bool[inf]
+FAILED code-smells-project/tests/test_security.py::test_prices_are_finite_numbers_not_bool[None]
+FAILED code-smells-project/tests/test_security.py::test_prices_are_finite_numbers_not_bool[2]
+FAILED code-smells-project/tests/test_security.py::test_update_validation_matches_creation[None]
+FAILED code-smells-project/tests/test_security.py::test_update_validation_matches_creation[body3]
+FAILED code-smells-project/tests/test_security.py::test_update_validation_matches_creation[body4]
+FAILED code-smells-project/tests/test_security.py::test_update_validation_matches_creation[body5]
+FAILED code-smells-project/tests/test_security.py::test_malformed_json_and_numeric_search_are_client_errors
+FAILED code-smells-project/tests/test_security.py::test_factory_lifecycle_does_not_seed_and_closes_connections
+FAILED code-smells-project/tests/test_security.py::test_checkout_failure_rolls_back_all_writes_before_next_request
+FAILED code-smells-project/tests/test_security.py::test_concurrent_checkout_never_oversells
+FAILED code-smells-project/tests/test_security.py::test_legacy_cutoff_and_token_expiry_use_controlled_clock
+37 failed, 3 passed in 1.89s

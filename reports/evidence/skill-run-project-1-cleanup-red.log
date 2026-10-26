@@ -1,0 +1,39 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____ test_http_runner_owns_process_and_releases_database_before_cleanup ______
+code-smells-project\tests\test_http_runner.py:12: in test_http_runner_owns_process_and_releases_database_before_cleanup
+    assert result.returncode == 0, result.stderr
+E   AssertionError: Traceback (most recent call last):
+E       File "<PYTHON>\Lib\shutil.py", line 633, in _rmtree_unsafe
+E         os.unlink(fullname)
+E     PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: '<TEMP>\\shop-http-jvcz65b6\\http.sqlite'
+E     
+E     During handling of the above exception, another exception occurred:
+E     
+E     Traceback (most recent call last):
+E       File "<REPO>\code-smells-project\tests\run_http_matrix.py", line 160, in <module>
+E         result=run()
+E                ^^^^^
+E       File "<REPO>\code-smells-project\tests\run_http_matrix.py", line 25, in run
+E         with tempfile.TemporaryDirectory(prefix='shop-http-') as directory:
+E              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "<PYTHON>\Lib\tempfile.py", line 950, in __exit__
+E         self.cleanup()
+E       File "<PYTHON>\Lib\tempfile.py", line 954, in cleanup
+E         self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+E       File "<PYTHON>\Lib\tempfile.py", line 934, in _rmtree
+E         _shutil.rmtree(name, onexc=onexc)
+E       File "<PYTHON>\Lib\shutil.py", line 781, in rmtree
+E         return _rmtree_unsafe(path, onexc)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "<PYTHON>\Lib\shutil.py", line 635, in _rmtree_unsafe
+E         onexc(os.unlink, fullname, err)
+E       File "<PYTHON>\Lib\tempfile.py", line 909, in onexc
+E         _os.unlink(path)
+E     PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: '<TEMP>\\shop-http-jvcz65b6\\http.sqlite'
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['<REPO>\\code-smells-project\... used by another process: \'<TEMP>\\\\shop-http-jvcz65b6\\\\http.sqlite\'\n').returncode
+=========================== short test summary info ===========================
+FAILED code-smells-project/tests/test_http_runner.py::test_http_runner_owns_process_and_releases_database_before_cleanup
+1 failed in 3.07s

@@ -1,0 +1,227 @@
+{
+  "result": "PASS",
+  "contracts": 19,
+  "http_checks": 40,
+  "processes": [
+    {
+      "pid": 10468,
+      "port": 50847,
+      "ready_seconds": 0.672,
+      "stopped": true
+    },
+    {
+      "pid": 18728,
+      "port": 50931,
+      "ready_seconds": 0.625,
+      "stopped": true
+    }
+  ],
+  "cleanup": "processes stopped and disposable directory removed",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/usuarios",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/produtos",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/produtos",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/produtos/1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/produtos/busca?q=%25",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/produtos/1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios/2",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/pedidos",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/pedidos",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/pedidos/usuario/2",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/pedidos/1/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/relatorios/vendas",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/produtos",
+      "status": 401
+    },
+    {
+      "method": "PUT",
+      "path": "/produtos/1",
+      "status": 401
+    },
+    {
+      "method": "DELETE",
+      "path": "/produtos/1",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios/2",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/pedidos",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/pedidos/usuario/2",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/pedidos",
+      "status": 401
+    },
+    {
+      "method": "PUT",
+      "path": "/pedidos/1/status",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/relatorios/vendas",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/admin/reset-db",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/usuarios/1",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/admin/query",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/produtos/1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/pedidos",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/admin/reset-db",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    }
+  ],
+  "command": [
+    "python.exe",
+    "tests/http_server.py"
+  ],
+  "readiness_timeout_seconds": 15
+}
