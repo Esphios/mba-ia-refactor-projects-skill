@@ -1,0 +1,15 @@
+test_timeout_stops_owned_launcher_and_child (timeout_regression.ProcessCleanup.test_timeout_stops_owned_launcher_and_child) ... 
+  test_timeout_stops_owned_launcher_and_child (timeout_regression.ProcessCleanup.test_timeout_stops_owned_launcher_and_child) [owned process cleanup] ... FAIL
+
+======================================================================
+FAIL: test_timeout_stops_owned_launcher_and_child (timeout_regression.ProcessCleanup.test_timeout_stops_owned_launcher_and_child) [owned process cleanup]
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>\scripts\tests\test_processes.py", line 71, in test_timeout_stops_owned_launcher_and_child
+    self.assertFalse(any(alive(pid) for pid in pids), f"Owned processes survived: {pids}")
+AssertionError: True is not false : Owned processes survived: [20664, 10068]
+
+----------------------------------------------------------------------
+Ran 1 test in 7.182s
+
+FAILED (failures=1)

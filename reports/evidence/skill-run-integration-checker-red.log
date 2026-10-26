@@ -1,0 +1,24 @@
+test_check_delivery (unittest.loader._FailedTest.test_check_delivery) ... ERROR
+
+======================================================================
+ERROR: test_check_delivery (unittest.loader._FailedTest.test_check_delivery)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_check_delivery
+Traceback (most recent call last):
+  File "<PYTHON>\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<PYTHON>\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "<REPO>\scripts\tests\test_check_delivery.py", line 10, in <module>
+    spec.loader.exec_module(checker)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '<REPO>\\scripts\\check_delivery.py'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

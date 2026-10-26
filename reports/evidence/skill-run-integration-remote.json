@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-25",
+  "repository": "Esphios/mba-ia-refactor-projects-skill",
+  "visibility": "public",
+  "fork": true,
+  "parent": "devfullcycle/mba-ia-refactor-projects-skill",
+  "default_branch": "main",
+  "remote_heads": ["main"],
+  "published": true
+}

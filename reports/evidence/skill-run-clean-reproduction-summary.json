@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-25",
+  "source": "detached clean checkout of the publication candidate",
+  "checkout": "detached clean worktree",
+  "all_steps_exit_code": 0,
+  "steps": 19,
+  "integration_tests": 8,
+  "delivery_checker": "PASS",
+  "project_1": {"install": "PASS", "tests": "66/66", "http": "19 contracts / 40 cases / cleanup PASS"},
+  "project_2": {"install": "npm ci PASS", "tests": "21/21", "http": "3 contracts / 42 cases / cleanup PASS"},
+  "project_3": {"install": "PASS", "tests": "28/28", "http": "22 contracts + 34 security checks / cleanup PASS"},
+  "note": "Summary reviewed from raw local logs; absolute paths and raw install output were not published."
+}

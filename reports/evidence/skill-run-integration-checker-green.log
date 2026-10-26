@@ -1,0 +1,12 @@
+test_audit_is_required_for_each_project (test_check_delivery.DeliveryChecks.test_audit_is_required_for_each_project) ... ok
+test_comments_do_not_count_as_transformations (test_check_delivery.DeliveryChecks.test_comments_do_not_count_as_transformations) ... ok
+test_complete_fixture (test_check_delivery.DeliveryChecks.test_complete_fixture) ... ok
+test_documented_evidence_must_exist (test_check_delivery.DeliveryChecks.test_documented_evidence_must_exist) ... ok
+test_readme_sections_are_required (test_check_delivery.DeliveryChecks.test_readme_sections_are_required) ... ok
+test_reference_cannot_be_missing (test_check_delivery.DeliveryChecks.test_reference_cannot_be_missing) ... ok
+test_skill_copies_must_match (test_check_delivery.DeliveryChecks.test_skill_copies_must_match) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.934s
+
+OK
